@@ -27,6 +27,7 @@ button{
   flex-wrap: wrap;
 }
 .horizontal_navbar{
+  padding-top: 20px;
   height: 65px;
   background:white;
   width: 100%;
@@ -79,7 +80,7 @@ button{
 }
 
 .background{
-  max-height: 300px;
+  max-height: 400px;
   width: 100%;
   overflow: hidden;
 }
@@ -96,7 +97,7 @@ button{
   display: block;
   position: absolute;
   left: 45%;
-  top: 185px;
+  top: 250px;
   opacity: 1;
 }
 .background:hover .change_background{
@@ -187,7 +188,7 @@ button{
 }
 .side_info{
   margin-left: 4%;
-
+  margin-right: 4%;
 }
 .post_1, .post_2{
   padding-left: 20px;
