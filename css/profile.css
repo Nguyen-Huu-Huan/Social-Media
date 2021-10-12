@@ -1,7 +1,4 @@
-body{
-  background: #F8fbf8;
-  line-height: 1.5;
-}
+/* Similar code themes */
 button{
   cursor: pointer;
 }
@@ -17,7 +14,9 @@ button{
 .col-60{
   flex-basis: 60%;
 }
-
+.col-70{
+  flex-basis: 70%;
+}
 .col-80{
   flex-basis: 80%;
 }
@@ -26,12 +25,6 @@ button{
   flex-direction: row;
   flex-wrap: wrap;
 }
-.horizontal_navbar{
-  padding-top: 20px;
-  height: 65px;
-  background:white;
-  width: 100%;
-}
 .logo_a{
   width: 20%;
   display: flex;
@@ -39,6 +32,18 @@ button{
   justify-content: center;
 }
 .logo_img{
+  width: 100%;
+}
+/* Profile */
+body{
+  background: #F8fbf8;
+  line-height: 1.5;
+}
+
+.horizontal_navbar{
+  padding-top: 20px;
+  height: 65px;
+  background:white;
   width: 100%;
 }
 .notification_a{
@@ -179,8 +184,6 @@ button{
   background: #EBECF0;
   height: 30px;
   width: 100%;
-}
-.search_bar_input{
   padding-left: 50px;
 }
 .search_icon{
@@ -219,4 +222,65 @@ button{
   width: 50px;
   height: 50px;
   border-radius: 50%;
+}
+/* messenger */
+.top{
+  background: white;
+}
+.group_info{
+  width: 45%;
+  display: flex;
+  justify-content: flex-end;
+}
+.group_image{
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+}
+.group_image>img{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.online_status_img{
+  background: #0BDA51;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  color: white;
+}
+.group_name>h1{
+  line-height: 0.2;
+}
+
+.online_status_p{
+  /* margin-top: -10px; */
+  width: 90%;
+  text-align: right;
+  line-height: 0.2;
+  margin-top: 8px;
+}
+.online_status_img_container{
+  width: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 20px;
+}
+.side_group_icon{
+  background: white;
+}
+.side_group_icon img{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.group1, .group2{
+  margin-bottom: 20px;
+}
+.online_status_2{
+  background: #0BDA51;
+  border-radius: 50%;
+  margin-left: -11px;
+  margin-top: 2px;
 }

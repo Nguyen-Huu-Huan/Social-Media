@@ -1,0 +1,138 @@
+/* Similar code themes */
+body{
+  background: #F8fbf8;
+  line-height: 1.5;
+}
+button{
+  cursor: pointer;
+}
+.col-20{
+  flex-basis: 20%;
+}
+.col-25{
+  flex-basis: 25%;
+}
+.col-30{
+  flex-basis: 30%;
+}
+.col-50{
+  flex-basis: 50%;
+}
+.col-60{
+  flex-basis: 60%;
+}
+.col-70{
+  flex-basis: 70%;
+}
+.col-80{
+  flex-basis: 80%;
+}
+.row{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.logo_a{
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo_img{
+  width: 100%;
+}
+/* Messenger */
+.top{
+  background: white;
+}
+.search_bar_div{
+  margin-left: 5vw;
+  display: flex;
+  align-items: center;
+  width: 25%;
+}
+.search_bar_input{
+  border-radius: 20px 20px 20px 20px;
+  background: #EBECF0;
+  height: 30px;
+  width: 100%;
+  padding-left: 35px;
+}
+.search_icon{
+  margin-left: -43%;
+}
+.group_info{
+  width: 45%;
+  display: flex;
+  justify-content: flex-end;
+}
+.group_image{
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+}
+.group_image>img{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.online_status_img{
+  background: #0BDA51;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  color: white;
+}
+.group_name>h1{
+  line-height: 0.2;
+}
+
+.online_status_p{
+  /* margin-top: -10px; */
+  width: 90%;
+  text-align: right;
+  line-height: 0.2;
+  margin-top: 8px;
+}
+.online_status_img_container{
+  width: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 20px;
+}
+.side_group_icon{
+  background: white;
+}
+.side_group_icon img{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.group1, .group2{
+  margin-bottom: 20px;
+}
+.online_status_2{
+  background: #0BDA51;
+  border-radius: 50%;
+  margin-left: -11px;
+  margin-top: 2px;
+}
+.group_details{
+  background: white;
+}
+.group_details>.row{
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.close_detail{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.close_detail>img{
+  width: 30px;
+  height: 30px;
+  float: right;
+}
