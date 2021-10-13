@@ -92,3 +92,10 @@ button{
   background: black;
   color: white;
 }
+.decoration_figure{
+  position: absolute;
+  right: 0;
+  margin-right: 7vw;
+  margin-top: 3vw;
+  width: 20vw;
+}
