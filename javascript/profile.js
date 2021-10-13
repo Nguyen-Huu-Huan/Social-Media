@@ -17,3 +17,9 @@ function darken_search_bar() {
   var search_bar = document.querySelector(".search_bar_input");
   search_bar.style.background="#EBECF0";
 }
+window.onload=function () {
+  document.querySelector(".follow_user>button").addEventListener("click", function followed () {
+    document.querySelector(".follow_user>button").innerHTML = "Followed";
+  })
+
+}
