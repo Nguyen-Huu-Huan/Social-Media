@@ -173,21 +173,25 @@ body{
   }
 }
 .search_bar_div{
+  flex-grow: 1;
   margin-left: 15vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 25%;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  /* width: 300px; */
 }
 .search_bar_input{
   border-radius: 20px 20px 20px 20px;
   background: #EBECF0;
   height: 30px;
-  width: 100%;
-  padding-left: 50px;
+  width: 80%;
+  padding-left: 40px;
 }
 .search_icon{
-  margin-left: -112%;
+  position: absolute;
+  padding-left: 15px;
+  padding-top: 5px;
+  left: 0px;
 }
 .side_info{
   margin-left: 4%;
@@ -211,12 +215,13 @@ body{
   line-height: 0.2;
 }
 .post_action{
-  width: 63%;
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
 }
-.post_action>img{
-  float: right;
-  width: 30px;
-  height: 30px;
+.post_action img{
+  width: 25px;
+  height: 25px;
 }
 .post_user_icon{
   width: 50px;
@@ -283,4 +288,40 @@ body{
   border-radius: 50%;
   margin-left: -11px;
   margin-top: 2px;
+}
+.new_message{
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  background: red;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  border-radius: 50%;
+  position: absolute;
+  margin-left: 25px;
+  margin-top: 32px;
+}
+.guess_account{
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.signup{
+  margin-right: 10px;
+  background: red;
+  color: white;
+  border-style: none;
+  border-radius: 5px 5px 5px 5px;
+  box-shadow: 1px 2px grey;
+  height: 25px;
+  width: 5rem;
+}
+.login{
+  border-style: none;
+  box-shadow: 1px 2px grey;
+  border-radius: 5px 5px 5px 5px;
+  height: 25px;
+  width: 5rem;
 }
