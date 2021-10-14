@@ -74,11 +74,7 @@ button{
   background: red;
   display: inline-block;
 }
-.rmit_email{
-  background:white;
-  border-radius: 10px 10px 10px 10px;
-  border-style: none;
-}
+
 .join_us_now{
    border:0.3vw solid black;
    font-size: 2vw;

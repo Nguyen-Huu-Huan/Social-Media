@@ -24,6 +24,8 @@ window.onload=function () {
   var change_profile_photo = document.querySelector(".change_profile_photo");
   var change_profile_photo_button = document.querySelector(".change_profile_photo_button");
   var upload_button = document.querySelector(".upload_file");
+  var signup = document.querySelector(".signup");
+
   follow_button.addEventListener("click", function followed () {
     click_count+=1;
     if (click_count%2==0){
@@ -59,6 +61,14 @@ window.onload=function () {
     document.querySelector("body").querySelectorAll("input:not(input.hidden_upload)").forEach((input) => { input.disabled = false; })
     document.querySelector("body").querySelectorAll("button:not(button.upload_file)").forEach((button) => { button.style.pointerEvents = ""; })
     document.querySelector("body").querySelectorAll("a:not(a.close_change_profile)").forEach((button) => { button.style.pointerEvents = ""; })
+  })
+  signup.addEventListener("click", function display_signup_form() {
+    var sign_up_form = document.querySelector(".signup_form");
+    sign_up_form.style = "display: block; margin-left:30vw;margin-right:30vw;margin-top:2vh;";
+    document.querySelector("body").querySelectorAll("*:not(signup_form *)").disabled = true;
+    // document.querySelector("body").querySelectorAll("input:not(input.rmit_email, input.verify_email)").forEach((input) => { input.disabled = true; })
+    // document.querySelector("body").querySelectorAll("button:not(button.verify_email, button.)").forEach((button) => { button.style.pointerEvents = "none"; })
+    // document.querySelector("body").querySelectorAll("a:not(a.close_change_profile)").forEach((button) => { button.style.pointerEvents = "none"; })
   })
 }
 

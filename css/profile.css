@@ -20,6 +20,9 @@ button{
 .col-80{
   flex-basis: 80%;
 }
+.col-90{
+  flex-basis: 90%;
+}
 .row{
   display: flex;
   flex-direction: row;
@@ -349,4 +352,34 @@ body{
 }
 .hidden_upload{
   display: none;
+}
+/* Sign up form */
+.signup_form{
+  position: absolute;
+  width: 40vw;
+  height: 90vh;
+  background: white;
+  border-radius: 20px 20px 20px 20px;
+  display: none;
+}
+.email_icon{
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  margin-left: 10px;
+  margin-top: -33px;
+}
+.verify_email{
+  margin-left: 10%;
+  border-radius: 20px 20px 20px 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.rmit_email{
+  background:white;
+  border-radius: 20px 20px 20px 20px;
+  width: 90%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 25%;
 }
