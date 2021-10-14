@@ -1,13 +1,15 @@
 function lighten_search_bar() {
   var search_bar = document.querySelector(".search_bar_input");
-  search_bar.style.background="white";
+  search_bar.style="background:white;border-color:red;";
 }
 function darken_search_bar() {
   var search_bar = document.querySelector(".search_bar_input");
-  search_bar.style.background="#EBECF0";
+  search_bar.style="background: #EBECF0;border-color:black;";
 }
 window.onload=function () {
-  click_count = 0;
+  var follow_click_count = 0;
+  var heart_click_count = Array.apply(null, Array(document.querySelectorAll(".heart_icon").length)).map(Number.prototype.valueOf,0);
+  console.log(heart_click_count);
   var close_change_profile = document.querySelector(".close_change_profile")
   var follow_button = document.querySelector(".follow_user>button");
   var change_profile_photo = document.querySelector(".change_profile_photo");
@@ -23,10 +25,13 @@ window.onload=function () {
   var close_milestone = document.querySelector(".close_milestone");
   var change_background = document.querySelector(".change_background");
   var background = document.querySelector(".background");
+  var heart_icon = document.querySelectorAll(".heart_icon");
+  var comment_icon = document.querySelectorAll(".comment_icon");
+  var share_icon = document.querySelectorAll(".share_icon")
   // Follow button
   follow_button.addEventListener("click", function followed () {
-    click_count+=1;
-    if (click_count%2==0){
+    follow_click_count+=1;
+    if (follow_click_count%2==0){
       follow_button.innerHTML = "Follow";
       follow_button.style.background="white";
       follow_button.style.color="#ff2400";
@@ -36,9 +41,26 @@ window.onload=function () {
       follow_button.style.color="white";
     }
   })
+  heart_icon.forEach((item, i) => {
+    heart_icon[i].addEventListener("click", function (target) {
+      heart_click_count[i]+=1;
+      var hex_color = "";
+      if (heart_click_count[i]%2==0){
+        hex_color = "000000";
+      }else{
+        hex_color = "ff0000";
+      }
+      heart_icon[i].src = "https://img.icons8.com/external-justicon-lineal-justicon/64/"+hex_color+"/external-heart-notifications-justicon-lineal-justicon.png";
+    })
+  });
+  // comment_icon.addEventListener("click", function turn_red() {
+  //   comment_icon.src = "https://img.icons8.com/ios/50/000000/chat-message.png";
+  // })
+  // share_icon.addEventListener("click", function turn_red() {
+  //   share_icon.src = "https://img.icons8.com/ios/50/000000/share-3.png";
+  // })
   // Change background
   change_background.addEventListener("mouseover", function upload_photo() {
-    console.log('fewfew');
     background.style = "filter: blur(5px);cursor: pointer;";
   })
   // Change photo
@@ -93,6 +115,8 @@ window.onload=function () {
     // document.querySelector("body").querySelectorAll("a:not(a.close_signup)").forEach((button) => { button.style.pointerEvents = ""; })
     document.querySelector("body").querySelectorAll("div").forEach((div) => { div.style.opacity = "1" })
   })
+
+
   // Escape Binding
   document.onkeydown=function (e) {
     if (e.key === "Escape") {
