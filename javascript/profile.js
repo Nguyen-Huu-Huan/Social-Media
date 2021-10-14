@@ -18,6 +18,9 @@ window.onload=function () {
   var close_signup = document.querySelector(".close_signup");
   var verify_email = document.querySelector(".verify_email");
   var email_sent = document.querySelector(".email_sent");
+  var milestone_button = document.querySelector(".change_milestone");
+  var edit_milestone = document.querySelector(".edit_milestone");
+  var close_milestone = document.querySelector(".close_milestone");
   var change_background = document.querySelector(".change_background");
   var background = document.querySelector(".background");
   // Follow button
@@ -74,7 +77,21 @@ window.onload=function () {
   })
   verify_email.addEventListener("click", function display_email_sent() {
     email_sent.style.display= "block";
-    console.log("fwefijwe");
+  })
+  // Edit milestone button
+  milestone_button.addEventListener("click", function display_change_milestone() {
+    edit_milestone.style = "display: block;";
+    // document.querySelector("body").querySelectorAll("input:not(input.rmit_email)").forEach((input) => { input.disabled = true; })
+    // document.querySelector("body").querySelectorAll("button:not(button.verify_email)").forEach((button) => { button.style.pointerEvents = "none"; })
+    // document.querySelector("body").querySelectorAll("a:not(a.close_signup)").forEach((button) => { button.style.pointerEvents = "none"; })
+    document.querySelector("body").querySelectorAll("div:not(div.edit_milestone,div.edit_milestone *)").forEach((div) => { div.style.opacity = "0.65" })
+  })
+  close_milestone.addEventListener("click", function close_milestone_window() {
+    edit_milestone.style.display = "none";
+    // document.querySelector("body").querySelectorAll("input:not(input.rmit_email, input.verify_email)").forEach((input) => { input.disabled = false; })
+    // document.querySelector("body").querySelectorAll("button:not(button.upload_file)").forEach((button) => { button.style.pointerEvents = ""; })
+    // document.querySelector("body").querySelectorAll("a:not(a.close_signup)").forEach((button) => { button.style.pointerEvents = ""; })
+    document.querySelector("body").querySelectorAll("div").forEach((div) => { div.style.opacity = "1" })
   })
   // Escape Binding
   document.onkeydown=function (e) {

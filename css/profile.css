@@ -278,7 +278,8 @@ body{
   height: 25px;
   width: 5rem;
 }
-.change_profile_photo{
+.change_profile_photo, .signup_form, .edit_milestone{
+  display: none;
   position:fixed;
   top:0;
   left:0;
@@ -288,7 +289,6 @@ body{
   width: 60%;
   height: 80%;
   background: white;
-  display: none;
   z-index: 99;
   border-radius: 10px 10px 10px 10px;
 }
@@ -296,20 +296,6 @@ body{
   display: none;
 }
 /* Sign up form */
-.signup_form{
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
-  margin:auto;
-  width: 60%;
-  height: 80%;
-  background: white;
-  display: none;
-  z-index: 99;
-  border-radius: 10px 10px 10px 10px;
-}
 .email_icon{
   position: absolute;
   width: 25px;
