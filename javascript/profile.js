@@ -9,6 +9,7 @@ function darken_search_bar() {
 window.onload=function () {
   var follow_click_count = 0;
   var heart_click_count = Array.apply(null, Array(document.querySelectorAll(".heart_icon").length)).map(Number.prototype.valueOf,0);
+  var post_action_click_count = Array.apply(null, Array(document.querySelectorAll(".post_action_button").length)).map(Number.prototype.valueOf,0);
   var close_change_profile = document.querySelector(".close_change_profile")
   var follow_button = document.querySelector(".follow_user>button");
   var change_profile_photo = document.querySelector(".change_profile_photo");
@@ -33,6 +34,9 @@ window.onload=function () {
   var bookmark_check = document.querySelectorAll(".bookmark_check");
   var signin_option = document.querySelector(".signin_option");
   var login_form = document.querySelector(".login_form");
+  var post_action_button = document.querySelectorAll(".post_action_button");
+  var post_action_div = document.querySelectorAll(".post_action_div");
+  var post_action_option = document.querySelectorAll(".post_action_div div"); // will be used later
   // Follow button
   follow_button.addEventListener("click", function followed () {
     follow_click_count+=1;
@@ -56,6 +60,17 @@ window.onload=function () {
       }
     })
   });
+  post_action_button.forEach((item, i) => {
+    post_action_button[i].addEventListener("click", function () {
+      post_action_click_count[i]+=1;
+      if (post_action_click_count[i]%2==0){
+        post_action_div[i].style="display:none";
+      }else{
+        post_action_div[i].style="display:block";
+      }
+    })
+  });
+  // fewofewiofjewoifjwefoiewjfweio
   login_input.forEach((item, i) => {
       login_input[i].addEventListener("focus", function () {
         login_placeholder[i].style="margin-top: -4.5rem;margin-left: 0.6rem;font-size: 0.7rem;color: red;";
@@ -68,7 +83,6 @@ window.onload=function () {
         }
       })
   });
-
   // Change background
   change_background.addEventListener("mouseover", function upload_photo() {
     background.style = "filter: blur(5px);cursor: pointer;";
@@ -142,6 +156,7 @@ window.onload=function () {
   signin_option.addEventListener("click", function display_signin_form() {
     login_form.style="display:block;";
   })
+
   // Escape Binding
   document.onkeydown=function (e) {
     if (e.key === "Escape") {
