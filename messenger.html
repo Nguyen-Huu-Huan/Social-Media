@@ -78,7 +78,7 @@
           <div class="nickname">
             <span id='nickname'>This is a nickname</span>
             <button type="button" name="button" onclick='OpenChangeBox()' class="changenickname" ><i class="fas fa-plus plus"></i></button>
-            
+
           </div>
         </div>
 
@@ -121,6 +121,17 @@
         document.querySelector("body").querySelectorAll("div:not(div.change_logic,div.change_logic *)").forEach((div) => { div.style.opacity = "1" })
         error.innerHTML = ""
       }
+    window.onload=function () {
+      document.onkeydown=function (e) {
+        if (e.key === "Escape") {
+          document.querySelector(".change_logic").style.display = 'none';
+          document.querySelector("body").querySelectorAll("input:not(input.change_input)").forEach((input) => { input.disabled = false; })
+          document.querySelector("body").querySelectorAll("button:not(button#change_input)").forEach((button) => { button.style.pointerEvents = ""; })
+          document.querySelector("body").querySelectorAll("a").forEach((button) => { button.style.pointerEvents = ""; })
+          document.querySelector("body").querySelectorAll("div:not(div.change_logic,div.change_logic *)").forEach((div) => { div.style.opacity = "1" })
+        }
+      }
+    }
     </script>
   </body>
 </html>
