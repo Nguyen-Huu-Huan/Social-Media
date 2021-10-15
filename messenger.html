@@ -4,12 +4,11 @@
     <meta charset="utf-8">
     <title>Messenger</title>
     <link rel="stylesheet" href="css/messenger.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
     <script type="text/javascript" src="javascript/profile.js"></script>
   </head>
   <body>
     <section class="top">
-      <div class="row logo_div">
           <a href="#" class="logo_a"><img src="logo.png" alt="logo" class="logo_img"></a>
           <div class="group_info">
             <div class="row">
@@ -31,11 +30,10 @@
             <input type="text" name="" value="" placeholder="Search Message.." class="search_bar_input" onfocus="lighten_search_bar()" onblur="darken_search_bar()" style="width: 35%;">
             <i class="fa fa-search search_icon" aria-hidden="true"></i>
           </div>
-      </div>
 
     </section>
     <section class="body row">
-      <div class="side_group_icon col-10">
+      <div class="side_group_icon col-5">
         <div class="group1 row">
           <img src="group2_logo.jpg" alt="">
           <img src="https://img.icons8.com/material-outlined/24/000000/filled-circle--v2.png" class="online_status_2" style="width: 15px; height: 15px;">
@@ -57,17 +55,70 @@
           </svg>
         </a>
       </div>
-      <div class="chatting_area" style="flex-basis: 70%;">
+      <div class="chatting_area">
 
       </div>
-      <div class="group_details col-25">
-        <div class="row">
+      <div class="group_details">
+        <div class="detail1">
           <h1>Details</h1>
-          <div class="close_detail col-70">
-            <a href="profile.html"><img src="https://img.icons8.com/ios/50/000000/circled-x.png"></a>
+          <div class="close_detail">
+            <a href="index.html"><img src="https://img.icons8.com/ios/50/000000/circled-x.png"></a>
           </div>
+        </div>
+        <div class="detail2">
+          <div class="current_user">
+            <img src="group2_logo.jpg" alt="">
+          </div>
+          <a href="#" class="callimage">
+            <i class="fas fa-phone-volume"></i>
+          </a>
+        </div>
+        <div class="detail3">
+          <div class="current_user_name">Alan Walker</div>
+          <div class="nickname">
+            <span id='nickname'>This is a nickname</span>
+            <button type="button" name="button" onclick='OpenChangeBox()' class="changenickname" ><i class="fas fa-plus plus"></i></button>
+            <div class="change_logic">
+              <div class="description">Enter your name here:</div>
+              <div class="">
+                <input type="text" name="" value="" placeholder="Enter a nickname" class="change_input">
+                <button type="button" name="button" onclick='CloseChangeBox()' id="change_input">Change</button>
+                <div class='nickname_error'></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="detail4">
+          <button type="button" name="button" class="video_func"><i class="fas fa-video"></i></button>
+          <button type="button" name="button" class="info_func"><i class="fas fa-info"></i></button>
+          <button type="button" name="button" class="microphone_func"><i class="fas fa-microphone"></i></button>
+          <input type="color" id="colorpicker">
         </div>
       </div>
     </section>
+    <script type="text/javascript">
+      function OpenChangeBox() {
+        document.querySelector('.change_logic').style.display = 'block';
+        document.querySelector("body").querySelectorAll("input:not(input.change_input)").forEach((input) => { input.disabled = true; })
+        document.querySelector("body").querySelectorAll("button:not(button#change_input)").forEach((button) => { button.style.pointerEvents = "none"; })
+        document.querySelector("body").querySelectorAll("a").forEach((button) => { button.style.pointerEvents = "none"; })
+        document.querySelector("body").querySelectorAll("div:not(div.change_logic, div.change_logic *)").forEach((div) => { div.style.opacity = "0.5" })
+      }
+      function CloseChangeBox(){
+        var nickname = document.querySelector('.change_input');
+        var error = document.querySelector('.nickname_error');
+        if (nickname.value.length > 15){
+          error.innerHTML ="No more than 15 characters!";
+          return;
+        }
+        document.getElementById('nickname').innerHTML = nickname.value ;
+        document.querySelector('.change_logic').style.display = 'none';
+        document.querySelector("body").querySelectorAll("input:not(input.change_input)").forEach((input) => { input.disabled = false; })
+        document.querySelector("body").querySelectorAll("button:not(button#change_input)").forEach((button) => { button.style.pointerEvents = ""; })
+        document.querySelector("body").querySelectorAll("a").forEach((button) => { button.style.pointerEvents = ""; })
+        document.querySelector("body").querySelectorAll("div:not(div.change_logic,div.change_logic *)").forEach((div) => { div.style.opacity = "1" })
+        error.innerHTML = ""
+      }
+    </script>
   </body>
 </html>
