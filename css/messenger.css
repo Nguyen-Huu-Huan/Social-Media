@@ -55,6 +55,7 @@ button{
   display: flex;
   border: 1px solid #D3D3D3;
   position: relative;
+  flex-basis: 20%;
 }
 .search_bar_div{
   margin-left: 5vw;
@@ -113,7 +114,7 @@ button{
   height: 20px;
 }
 .body{
-  flex-grow: 1;
+  flex-basis: auto;
 }
 .side_group_icon{
   background: white;
@@ -428,6 +429,9 @@ input[type=color]::-webkit-color-swatch-wrapper {
   left: 2%;
   margin-bottom: -15px;
 }
+.adding_file_wrapper{
+  position: relative;
+}
 .adding_file_button{
   display: flex;
   align-items: center;
@@ -450,9 +454,41 @@ input[type=color]::-webkit-color-swatch-wrapper {
   padding-left: 8%;
   font-size: 1rem;
   border-radius: 8px 8px 8px 8px;
+  border-color: transparent;
+  background: #EFF0F3;
 }
 .input_form_wrapper{
   position: relative;
   height: 90%;
   width: 90%;
+}
+.post_action_div{
+  position: absolute;
+  width: 350px;
+  height: 120px;
+  top:-135px;
+  background: white;
+  margin-bottom:40px;
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 0 0 20px #ccc;
+  display: none;
+}
+.post_action_button{
+  cursor: pointer;
+}
+.post_action_icon_wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.post_action_div>div{
+  border-radius: 10px 10px 10px 10px;
+}
+.post_action_div>div:hover{
+  cursor: pointer;
+  background: red;
+  color: white;
+}
+.post_action_div p, .post_action_div h4{
+  line-height: 0;
 }

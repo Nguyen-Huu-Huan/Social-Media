@@ -5,7 +5,8 @@
     <title>Messenger</title>
     <link rel="stylesheet" href="css/messenger.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
-<!--     <script type="text/javascript" src="javascript/profile.js"></script> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css">
+    <script type="text/javascript" src="javascript/messenger.js"></script>
   </head>
   <body>
     <section class="top">
@@ -206,11 +207,33 @@
           <form class="row input_form_wrapper" action="index.html" method="post">
             <input type="text" name="" value="" class="input_chat" placeholder="Chat">
             <div class="adding_files">
-              <a href="#" class="adding_file_button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                </svg>
-              </a>
+              <div class="adding_file_wrapper">
+                <a class="adding_file_button post_action_button">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                  </svg>
+                </a>
+                <div class="post_action_div">
+                  <div class="upload_file row">
+                    <div class="post_action_icon_wrapper col-20">
+                      <i class="bi bi-archive-fill"></i>
+                    </div>
+                    <div class="">
+                      <h4>Upload file</h4>
+                      <p>zip, docx, pptx, txt</p>
+                    </div>
+                  </div>
+                  <div class="upload_media row">
+                    <div class="post_action_icon_wrapper col-20">
+                      <i class="bi bi-play-circle-fill"></i>
+                    </div>
+                    <div class="post_action_content">
+                      <h4>Upload Media</h4>
+                      <p class="">png, jpg, gif, mp4, mp3, etc.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </form>
         </div>
@@ -255,40 +278,6 @@
         <div class='nickname_error'></div>
       </div>
     </div>
-    <script type="text/javascript">
-      function OpenChangeBox() {
-        document.querySelector(".change_logic").style.display = 'block';
-        document.querySelector("body").querySelectorAll("input:not(input.change_input)").forEach((input) => { input.disabled = true; })
-        document.querySelector("body").querySelectorAll("button:not(button#change_input)").forEach((button) => { button.style.pointerEvents = "none"; })
-        document.querySelector("body").querySelectorAll("a").forEach((button) => { button.style.pointerEvents = "none"; })
-        document.querySelector("body").querySelectorAll("div:not(div.change_logic, div.change_logic *)").forEach((div) => { div.style.opacity = "0.5" })
-      }
-      function CloseChangeBox(){
-        var nickname = document.querySelector('.change_input');
-        var error = document.querySelector('.nickname_error');
-        if (nickname.value.length > 15){
-          error.innerHTML ="No more than 15 characters!";
-          return;
-        }
-        document.getElementById("nickname").innerHTML = nickname.value ;
-        document.querySelector(".change_logic").style.display = 'none';
-        document.querySelector("body").querySelectorAll("input:not(input.change_input)").forEach((input) => { input.disabled = false; })
-        document.querySelector("body").querySelectorAll("button:not(button#change_input)").forEach((button) => { button.style.pointerEvents = ""; })
-        document.querySelector("body").querySelectorAll("a").forEach((button) => { button.style.pointerEvents = ""; })
-        document.querySelector("body").querySelectorAll("div:not(div.change_logic,div.change_logic *)").forEach((div) => { div.style.opacity = "1" })
-        error.innerHTML = ""
-      }
-    window.onload=function () {
-      document.onkeydown=function (e) {
-        if (e.key === "Escape") {
-          document.querySelector(".change_logic").style.display = 'none';
-          document.querySelector("body").querySelectorAll("input:not(input.change_input)").forEach((input) => { input.disabled = false; })
-          document.querySelector("body").querySelectorAll("button:not(button#change_input)").forEach((button) => { button.style.pointerEvents = ""; })
-          document.querySelector("body").querySelectorAll("a").forEach((button) => { button.style.pointerEvents = ""; })
-          document.querySelector("body").querySelectorAll("div:not(div.change_logic,div.change_logic *)").forEach((div) => { div.style.opacity = "1" })
-        }
-      }
-    }
-    </script>
+
   </body>
 </html>
