@@ -81,14 +81,7 @@
             
           </div>
         </div>
-        <div class="change_logic">
-          <div class="description">Enter your name here:</div>
-          <div class="">
-            <input type="text" name="" value="" placeholder="Enter a nickname" class="change_input">
-            <button type="button" name="button" onclick='CloseChangeBox()' id="change_input">Change</button>
-            <div class='nickname_error'></div>
-          </div>
-        </div>
+
         <div class="detail4">
           <button type="button" name="button" class="video_func"><i class="fas fa-video"></i></button>
           <button type="button" name="button" class="info_func"><i class="fas fa-info"></i></button>
@@ -97,6 +90,14 @@
         </div>
       </div>
     </section>
+    <div class="change_logic">
+      <div class="description">Enter your name here:</div>
+      <div class="">
+        <input type="text" name="" value="" placeholder="Enter a nickname" class="change_input">
+        <button type="button" name="button" onclick='CloseChangeBox()' id="change_input">Change</button>
+        <div class='nickname_error'></div>
+      </div>
+    </div>
     <script type="text/javascript">
       function OpenChangeBox() {
         document.querySelector(".change_logic").style.display = 'block';
