@@ -226,8 +226,7 @@ button{
 }
 .change_logic{
   position: fixed;
-  margin-left: auto;
-  margin-right: auto;
+  margin:auto;
   top:0;
   left:0;
   right:0;
