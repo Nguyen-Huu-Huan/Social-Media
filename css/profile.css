@@ -339,10 +339,17 @@ body{
   margin-right: 30px;
   margin-left:10px;
   padding: 10px;
+  width: 3rem;
 }
-.heart_icon:hover, .comment_icon:hover, .share_icon:hover{
+.bookmark_icon{
+  padding-left:15px;
+  padding-top: 5px;
+  padding-right:15px;
+  width: 3rem;
+}
+.heart_icon:hover, .comment_icon:hover, .share_icon:hover, .bookmark_icon:hover{
   background: #F5F6F8;
-  border-radius: 30px 30px 30px 30px;
+  border-radius: 50%;
 
 }
 .see_more_left_side{
@@ -377,3 +384,44 @@ body{
 .reaction{
   width: 80%;
 }
+.login_form{
+  margin-left: 30%;
+  margin-right: 30%;
+  display: flex;
+  justify-content: center;
+  display: none;
+}
+.login_input{
+  padding: 1rem 0 0.5rem 0.5rem;
+  width: 100%;
+  margin-bottom: 30px;
+  border-radius: 15px 15px 15px 15px;
+}
+
+.placeholder {
+  position: absolute;
+  pointer-events: none;
+  margin-top: -3.9rem;
+  margin-left: 1rem;
+  color: grey;
+  transition: 0.2s ease all;
+}
+.login_input:focus{
+  border: 3px solid red;
+  box-shadow: 1px 1px #FF7276;
+}
+.login_input:focus+.placeholder{
+  margin-top: -4.5rem;
+  margin-left: 0.6rem;
+  font-size: 0.7rem;
+  color: red;
+}
+
+/* .login_input:focus ~ .placeholder,
+.login_input:not(:focus):valid ~ .placeholder{
+  margin-top: -3.1rem;
+  margin-left: 1rem;
+  font-size: 11px;
+  background:green;
+  opacity: 1;
+} */

@@ -9,7 +9,6 @@ function darken_search_bar() {
 window.onload=function () {
   var follow_click_count = 0;
   var heart_click_count = Array.apply(null, Array(document.querySelectorAll(".heart_icon").length)).map(Number.prototype.valueOf,0);
-  console.log(heart_click_count);
   var close_change_profile = document.querySelector(".close_change_profile")
   var follow_button = document.querySelector(".follow_user>button");
   var change_profile_photo = document.querySelector(".change_profile_photo");
@@ -27,7 +26,13 @@ window.onload=function () {
   var background = document.querySelector(".background");
   var heart_icon = document.querySelectorAll(".heart_icon");
   var comment_icon = document.querySelectorAll(".comment_icon");
-  var share_icon = document.querySelectorAll(".share_icon")
+  var share_icon = document.querySelectorAll(".share_icon");
+  var login_input = document.querySelectorAll(".login_input");
+  var login_placeholder = document.querySelectorAll(".placeholder");
+  var bookmark_uncheck = document.querySelectorAll(".bookmark_uncheck");
+  var bookmark_check = document.querySelectorAll(".bookmark_check");
+  var signin_option = document.querySelector(".signin_option");
+  var login_form = document.querySelector(".login_form");
   // Follow button
   follow_button.addEventListener("click", function followed () {
     follow_click_count+=1;
@@ -42,23 +47,28 @@ window.onload=function () {
     }
   })
   heart_icon.forEach((item, i) => {
-    heart_icon[i].addEventListener("click", function (target) {
+    heart_icon[i].addEventListener("click", function () {
       heart_click_count[i]+=1;
-      var hex_color = "";
       if (heart_click_count[i]%2==0){
-        hex_color = "000000";
+        heart_icon[i].style="color:black;font-size: 3rem;text-align:center;transition: 0.3s ease all;";
       }else{
-        hex_color = "ff0000";
+        heart_icon[i].style="color:red;font-size: 3.1rem;text-align:center;transition: 0.3s ease all;";
       }
-      heart_icon[i].src = "https://img.icons8.com/external-justicon-lineal-justicon/64/"+hex_color+"/external-heart-notifications-justicon-lineal-justicon.png";
     })
   });
-  // comment_icon.addEventListener("click", function turn_red() {
-  //   comment_icon.src = "https://img.icons8.com/ios/50/000000/chat-message.png";
-  // })
-  // share_icon.addEventListener("click", function turn_red() {
-  //   share_icon.src = "https://img.icons8.com/ios/50/000000/share-3.png";
-  // })
+  login_input.forEach((item, i) => {
+      login_input[i].addEventListener("focus", function () {
+        login_placeholder[i].style="margin-top: -4.5rem;margin-left: 0.6rem;font-size: 0.7rem;color: red;";
+      })
+      login_input[i].addEventListener("blur", function () {
+        if (login_input[i].value!=""){
+          login_placeholder[i].style="margin-top: -4.5rem;margin-left: 0.6rem;font-size: 0.7rem;color: red;";
+        }else if (login_input[i].value=="") {
+          login_placeholder[i].style="margin-top: -3.9rem;margin-left: 1rem;color: grey;transition: 0.2s ease all;";
+        }
+      })
+  });
+
   // Change background
   change_background.addEventListener("mouseover", function upload_photo() {
     background.style = "filter: blur(5px);cursor: pointer;";
@@ -85,9 +95,9 @@ window.onload=function () {
   // Sign up button
   signup.addEventListener("click", function display_signup_form() {
     sign_up_form.style = "display: block;";
-    document.querySelector("body").querySelectorAll("input:not(input.rmit_email)").forEach((input) => { input.disabled = true; })
-    document.querySelector("body").querySelectorAll("button:not(button.verify_email)").forEach((button) => { button.style.pointerEvents = "none"; })
-    document.querySelector("body").querySelectorAll("a:not(a.close_signup)").forEach((button) => { button.style.pointerEvents = "none"; })
+    document.querySelector("body").querySelectorAll("input:not(div.signup_form input)").forEach((input) => { input.disabled = true; })
+    document.querySelector("body").querySelectorAll("button:not(div.signup_form button)").forEach((button) => { button.style.pointerEvents = "none"; })
+    document.querySelector("body").querySelectorAll("a:not(div.signup_form a)").forEach((button) => { button.style.pointerEvents = "none"; })
     document.querySelector("body").querySelectorAll("div:not(div.signup_form,div.signup_form *)").forEach((div) => { div.style.opacity = "0.65" })
   })
   close_signup.addEventListener("click", function close_profile_change_window() {
@@ -116,7 +126,22 @@ window.onload=function () {
     document.querySelector("body").querySelectorAll("div").forEach((div) => { div.style.opacity = "1" })
   })
 
-
+  // Bookmark
+  bookmark_check.forEach((item, i) => {
+    bookmark_check[i].addEventListener("click", function bookmark_checked() {
+      bookmark_uncheck[i].style="display:block;font-size: 3rem;transition: 0.3s ease all;";
+      bookmark_check[i].style="display:none;font-size: 3.1rem;transition: 0.3s ease all;";
+    })
+  });
+  bookmark_uncheck.forEach((item, i) => {
+    bookmark_uncheck[i].addEventListener("click", function bookmark_unchecked() {
+      bookmark_check[i].style="display:block;font-size: 3.1rem;color:#FEDD00;transition: 0.3s ease all;";
+      bookmark_uncheck[i].style="display:none;font-size: 3rem;transition: 0.3s ease all;";
+    })
+  });
+  signin_option.addEventListener("click", function display_signin_form() {
+    login_form.style="display:block;";
+  })
   // Escape Binding
   document.onkeydown=function (e) {
     if (e.key === "Escape") {
