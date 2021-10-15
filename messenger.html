@@ -78,14 +78,15 @@
           <div class="nickname">
             <span id='nickname'>This is a nickname</span>
             <button type="button" name="button" onclick='OpenChangeBox()' class="changenickname" ><i class="fas fa-plus plus"></i></button>
-            <div class="change_logic">
-              <div class="description">Enter your name here:</div>
-              <div class="">
-                <input type="text" name="" value="" placeholder="Enter a nickname" class="change_input">
-                <button type="button" name="button" onclick='CloseChangeBox()' id="change_input">Change</button>
-                <div class='nickname_error'></div>
-              </div>
-            </div>
+            
+          </div>
+        </div>
+        <div class="change_logic">
+          <div class="description">Enter your name here:</div>
+          <div class="">
+            <input type="text" name="" value="" placeholder="Enter a nickname" class="change_input">
+            <button type="button" name="button" onclick='CloseChangeBox()' id="change_input">Change</button>
+            <div class='nickname_error'></div>
           </div>
         </div>
         <div class="detail4">
@@ -98,7 +99,7 @@
     </section>
     <script type="text/javascript">
       function OpenChangeBox() {
-        document.querySelector('.change_logic').style.display = 'block';
+        document.querySelector(".change_logic").style.display = 'block';
         document.querySelector("body").querySelectorAll("input:not(input.change_input)").forEach((input) => { input.disabled = true; })
         document.querySelector("body").querySelectorAll("button:not(button#change_input)").forEach((button) => { button.style.pointerEvents = "none"; })
         document.querySelector("body").querySelectorAll("a").forEach((button) => { button.style.pointerEvents = "none"; })
@@ -111,8 +112,8 @@
           error.innerHTML ="No more than 15 characters!";
           return;
         }
-        document.getElementById('nickname').innerHTML = nickname.value ;
-        document.querySelector('.change_logic').style.display = 'none';
+        document.getElementById("nickname").innerHTML = nickname.value ;
+        document.querySelector(".change_logic").style.display = 'none';
         document.querySelector("body").querySelectorAll("input:not(input.change_input)").forEach((input) => { input.disabled = false; })
         document.querySelector("body").querySelectorAll("button:not(button#change_input)").forEach((button) => { button.style.pointerEvents = ""; })
         document.querySelector("body").querySelectorAll("a").forEach((button) => { button.style.pointerEvents = ""; })
