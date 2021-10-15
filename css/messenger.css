@@ -2,6 +2,8 @@
 body{
   background: #F8fbf8;
   line-height: 1.5;
+  display: flex;
+  flex-direction: column;
 }
 button{
   cursor: pointer;
@@ -51,7 +53,6 @@ button{
 .top{
   background: white;
   display: flex;
-  flex-grow: 1;
   border: 1px solid #D3D3D3;
   position: relative;
 }
@@ -111,6 +112,9 @@ button{
   justify-content: flex-end;
   height: 20px;
 }
+.body{
+  flex-grow: 1;
+}
 .side_group_icon{
   background: white;
   display: flex;
@@ -158,6 +162,15 @@ button{
 .chatting_area{
   width: 60%;
   background: #DCDCDC;
+  flex-grow:1;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.chat_box{
+  overflow-y: scroll;
+  flex-basis: 90%;
 }
 .detail1{
   height: 15%;
@@ -328,4 +341,118 @@ input[type=color]::-webkit-color-swatch {
 
 input[type=color]::-webkit-color-swatch-wrapper {
     padding: 0;
+}
+.chatting_area{
+  background: white;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.chat_user_img_wrapper{
+  display: flex;
+  align-items: flex-end;
+}
+.chat_user_img{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.m_sent .content p{
+  padding: 0 18px 0 18px;
+  line-height: normal;
+}
+.m_received .content p{
+  padding: 0 18px 0 18px;
+  line-height: normal;
+}
+
+.m_sent{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 1.5%;
+}
+.m_received{
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 1.5%;
+}
+.content{
+  text-align: justify;
+  max-width: 75%;
+  width: auto;
+  border-radius: 20px 20px 20px 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  position: relative;
+  box-shadow: 0 5px 10px rgb(0 0 0 / 0.2);
+}
+.m_sent>.content{
+  background: red;
+  color: white;
+}
+.m_received>.content{
+  background: #FBFBFC;
+  color: black;
+  margin-left: 1%;
+}
+.message_time_received{
+  position: absolute;
+  bottom: 50%;
+  right: -4em;
+  opacity: 0;
+  line-height: 0;
+  transition: 0.5s ease all;
+}
+.message_time_sent{
+  position: absolute;
+  bottom: 50%;
+  line-height: 0;
+  left: -4em;
+  color: black;
+  opacity: 0;
+  transition: 0.5s ease all;
+}
+.content p:hover+.message_time_received, .content p:hover+.message_time_sent{
+  opacity: 1;
+}
+.typing_area{
+  flex-basis: 10%;
+  max-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.adding_files{
+  position: absolute;
+  bottom: 50%;
+  left: 2%;
+  margin-bottom: -15px;
+}
+.adding_file_button{
+  display: flex;
+  align-items: center;
+}
+.adding_files svg{
+  width: 30px;
+  height: 30px;
+  background: black;
+  color: white;
+  border-radius: 50%;
+}
+.adding_files svg:hover{
+  background: white;
+  color: black;
+}
+.input_chat{
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 8%;
+  font-size: 1rem;
+  border-radius: 8px 8px 8px 8px;
+}
+.input_form_wrapper{
+  position: relative;
+  height: 90%;
+  width: 90%;
 }
