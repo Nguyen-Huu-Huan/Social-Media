@@ -23,15 +23,15 @@ function CloseChangeBox(){
 window.onload=function () {
   var post_action_click_count = Array.apply(null, Array(document.querySelectorAll(".post_action_button").length)).map(Number.prototype.valueOf,0);
   var post_action_button = document.querySelectorAll(".post_action_button");
-  var post_action_div = document.querySelectorAll(".post_action_div");
-  
+  var upload_function_div = document.querySelectorAll(".upload_function_div");
+
   post_action_button.forEach((item, i) => {
     post_action_button[i].addEventListener("click", function () {
       post_action_click_count[i]+=1;
       if (post_action_click_count[i]%2==0){
-        post_action_div[i].style="display:none";
+        upload_function_div[i].style="display:none";
       }else{
-        post_action_div[i].style="display:block";
+        upload_function_div[i].style="display:block";
       }
     })
   });
@@ -44,5 +44,22 @@ window.onload=function () {
       document.querySelector("body").querySelectorAll("div:not(div.change_logic,div.change_logic *)").forEach((div) => { div.style.opacity = "1" })
     }
   }
+  let colorpicker = document.getElementById("colorpicker");
+  let background_message_sent = document.querySelectorAll("div.m_sent>.content");
+  let text = document.querySelectorAll("div.m_sent>.content>p")
+
+  background_message_sent.forEach((item, i) => {
+    background_message_sent[i].style.background = colorpicker.value;
+    colorpicker.addEventListener("input", function(event){
+      hex = colorpicker.value;
+      hex_to_rgb = [parseInt(hex.charAt(1)+hex.charAt(2), 16), parseInt(hex.charAt(3)+hex.charAt(4), 16), parseInt(hex.charAt(5)+hex.charAt(6), 16)]
+      background_message_sent[i].style.background = event.target.value;
+      if (Math.round(hex_to_rgb[0] * 0.299+hex_to_rgb[1] * 0.587+hex_to_rgb[2] * 0.114)>125){
+        text[i].style.color = "black";
+      }else{
+        text[i].style.color = "white";
+      }
+    });
+  });
 
 }
