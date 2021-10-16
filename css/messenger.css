@@ -65,30 +65,47 @@ button{
   flex-basis: 20%;
 }
 .search_bar_div{
-  margin-left: 5vw;
   display: flex;
   align-items: center;
   position: relative;
-  width: 10rem;
-  transition: 0.2s ease-in;
 }
 .search_bar_input{
   border-radius: 20px 20px 20px 20px;
   background: #EBECF0;
   height: 30px;
-  width: 100%;
+  width: 10rem;
   padding-left: 35px;
+  transition: 0.2s ease-in;
 }
 .search_icon{
   position: absolute;
   padding-left: 15px;
   left: 0px;
-
 }
-.group_info{
-  width: 45%;
+.group_header{
+  width: 50%;
   display: flex;
   justify-content: flex-end;
+}
+
+.top_group_buttons>div{
+  margin-left: 1vw;
+  margin-right: 1vw;
+  width: 1.45em;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  height: 1.45em;
+  align-items: center;
+  cursor: pointer;
+}
+.top_group_buttons>div:hover{
+  color: white;
+  background: black;
+  border-radius: 50%;
+}
+.group_info_wrapper{
+  margin-right: 1.5vw;
 }
 .group_image{
   display: flex;
@@ -107,7 +124,7 @@ button{
   height: 15px;
   color: white;
 }
-.group_name>h1{
+.group_info>h1{
   line-height: 0.2;
 }
 
@@ -157,11 +174,13 @@ button{
   border: 1px solid #D3D3D3;
   position: relative;
   overflow: hidden;
+  transition: 0.3s ease;
 }
 .group_details>.row{
   width: 100%;
   position: absolute;
 }
+
 .close_detail{
   display: flex;
   justify-content: flex-end;
@@ -180,6 +199,7 @@ button{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
 }
 .chat_box{
   overflow-y: scroll;

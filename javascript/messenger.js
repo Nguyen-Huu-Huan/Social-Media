@@ -1,14 +1,12 @@
 function lighten_search_bar() {
   var search_bar = document.querySelector(".search_bar_input");
   var search_bar_div = document.querySelector(".search_bar_div");
-  search_bar.style="background:white;border-color:red;";
-  search_bar_div.style= "width: 30%;";
+  search_bar.style="background:white;border-color:red;width:100%;";
 }
 function darken_search_bar() {
   var search_bar = document.querySelector(".search_bar_input");
   var search_bar_div = document.querySelector(".search_bar_div");
-  search_bar.style="background: #EBECF0;border-color:black;";
-  search_bar_div.style= "width: 10rem;";
+  search_bar.style="background: #EBECF0;border-color:black;width: 10rem;";
 }
 function OpenChangeBox() {
   document.querySelector(".change_logic").style.display = 'block';
@@ -34,9 +32,11 @@ function CloseChangeBox(){
 }
 window.onload=function () {
   var post_action_click_count = Array.apply(null, Array(document.querySelectorAll(".post_action_button").length)).map(Number.prototype.valueOf,0);
+  var details_toggle_click_count = 0;
   var post_action_button = document.querySelectorAll(".post_action_button");
   var upload_function_div = document.querySelectorAll(".upload_function_div");
-
+  var details_toggle = document.querySelector(".details_toggle");
+  var group_details = document.querySelector(".group_details");
   post_action_button.forEach((item, i) => {
     post_action_button[i].addEventListener("click", function () {
       post_action_click_count[i]+=1;
@@ -73,5 +73,13 @@ window.onload=function () {
       }
     });
   });
-
+  details_toggle.addEventListener("click", function toggle_details() {
+    console.log("fehwofewoi");
+    details_toggle_click_count+=1;
+    if (details_toggle_click_count%2==1){
+      group_details.style = "flex-basis: 0%";
+    }else{
+      group_details.style = "flex-basis: 30%";
+    }
+  })
 }
