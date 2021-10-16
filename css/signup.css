@@ -1,8 +1,8 @@
 /* Similar code themes */
-/* body {
-  background-image: url('signup_background.jpg');
-  background-repeat: no-repeat;
-} */
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-size:calc(7px + 0.5vw);
+}
 body {  background: 'signup_background.jpg';
 max-width: 100%;}
 button{

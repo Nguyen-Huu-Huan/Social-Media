@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css">
     <script type="text/javascript" src="javascript/messenger.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
   </head>
   <body>
     <section class="top">
@@ -35,15 +38,18 @@
     </section>
     <section class="body row">
       <div class="side_group_icon col-5">
-        <div class="group1 row">
+        <div class="group_list row">
+          <img src="group_logo.jpg" alt="">
+          <img src="https://img.icons8.com/material-outlined/24/000000/filled-circle--v2.png" class="online_status_2" style="width: 15px; height: 15px;">
+        </div>
+        <div class="group_list row">
           <img src="group2_logo.jpg" alt="">
           <img src="https://img.icons8.com/material-outlined/24/000000/filled-circle--v2.png" class="online_status_2" style="width: 15px; height: 15px;">
         </div>
-        <div class="group2 row">
+        <div class="group_list row">
           <img src="group3_logo.jpg" alt="">
           <img src="https://img.icons8.com/material-outlined/24/000000/filled-circle--v2.png" class="online_status_2" style="width: 15px; height: 15px;">
         </div>
-
         <img src="" alt=""><br>
         <img src="" alt=""><br>
         <img src="" alt=""><br>
@@ -247,10 +253,10 @@
         </div>
         <div class="detail2">
           <div class="current_user">
-            <img src="group2_logo.jpg" alt="">
+            <img src="group_logo.jpg" alt="">
           </div>
           <a href="#" class="callimage">
-            <i class="fas fa-phone-volume"></i>
+            <i class="bi bi-camera"></i>
           </a>
         </div>
         <div class="detail3">
@@ -263,14 +269,20 @@
         </div>
 
         <div class="detail4">
-          <button type="button" name="button" class="paperclip_func"><i class="fas fa-paperclip"></i></button>
-          <button type="button" name="button" class="info_func"><i class="fas fa-info"></i></button>
-          <button type="button" name="button" class="users_func"><i class="fas fa-users"></i></button>
-          <input type="color" id="colorpicker">
-          <div class="hover_detail4">
+          <div class="detail4_button_wrapper">
+            <button type="button" name="button" class="paperclip_func"><i class="fas fa-paperclip"></i></button>
             <span id="paperclip">Papper Clip</span>
+          </div>
+          <div class="detail4_button_wrapper">
+            <button type="button" name="button" class="info_func"><i class="fas fa-info"></i></button>
             <span id="groupinformation">Group Information</span>
+          </div>
+          <div class="detail4_button_wrapper">
+            <button type="button" name="button" class="users_func"><i class="fas fa-users"></i></button>
             <span id="users">Users</span>
+          </div>
+          <div class="detail4_button_wrapper">
+            <input type="color" id="colorpicker">
             <span id="choosecolor">Color Picker</span>
           </div>
         </div>

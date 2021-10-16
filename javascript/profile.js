@@ -149,7 +149,7 @@ window.onload=function () {
   });
   bookmark_uncheck.forEach((item, i) => {
     bookmark_uncheck[i].addEventListener("click", function bookmark_unchecked() {
-      bookmark_check[i].style="display:block;font-size: 3.1rem;color:#FEDD00;transition: 0.3s ease all;";
+      bookmark_check[i].style="display:block;font-size: 3.1rem;color:orange;transition: 0.3s ease all;";
       bookmark_uncheck[i].style="display:none;font-size: 3rem;transition: 0.3s ease all;";
     })
   });

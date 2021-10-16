@@ -6,6 +6,8 @@ body{
   flex-direction: column;
   margin: 0;
   overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+  font-size:calc(7px + 0.5vw);
 }
 button{
   cursor: pointer;
@@ -131,7 +133,7 @@ button{
   height: 40px;
   border-radius: 50%;
 }
-.group1, .group2{
+.group_list{
   margin-bottom: 20px;
 }
 .online_status_2{
@@ -204,12 +206,12 @@ button{
   border-radius: 50%;
   width: 120px;
   height: 120px;
-  border: 8px solid transparent;
+  border: 5px solid transparent;
   background: linear-gradient(#34e89e, #9198e5);
 }
 .callimage{
   border-radius: 50%;
-  background: #72bcd4;
+  background: grey;
   z-index: 2;
   color: white;
   position: absolute;
@@ -218,6 +220,9 @@ button{
   height: 40px;
   text-align: center;
   margin: 90px 0 0 90px;
+}
+.callimage:hover{
+  background: orange;
 }
 .detail3{
   display: flex;
@@ -309,6 +314,7 @@ button{
   align-items: center;
   height: 60px;
   margin-top: 5%;
+  position: relative;
 }
 .users_func, .info_func, .paperclip_func, #colorpicker{
   width: 40px;
@@ -351,35 +357,31 @@ input[type=color]::-webkit-color-swatch {
 input[type=color]::-webkit-color-swatch-wrapper {
     padding: 0;
 }
-.hover_detail4{
+
+.detail4_button_wrapper{
+  position: relative;
+}
+.detail4_button_wrapper span{
   position: absolute;
-  margin: 15% 0 0 0;
-  z-index: 10;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 40px;
-}
-.hover_detail4 span{
-  width: 40px;
-  height: 40px;
-  margin: 20px 10px 10px 10px;;
+  width: 6em;
+  height: auto;
+  top: 100%;
+  left: -31%;
+  padding: 5px 5px 5px 5px;
   line-height: 1;
-  transition: 0.3s ease-in-out;
+  transition: 0.25s ease-in-out;
   opacity: 0;
+  text-align: center;
+  background: blue;
+  z-index: 99;
 }
-.paperclip_func:hover ~ .hover_detail4 #paperclip{
+#colorpicker:hover + #choosecolor, .users_func:hover ~ #users, .info_func:hover ~ #groupinformation, .paperclip_func:hover + #paperclip{
+  display: block;
   opacity: 1;
-}
-.info_func:hover ~ .hover_detail4 #groupinformation{
-  opacity: 1;
-}
-.users_func:hover ~ .hover_detail4 #users{
-  opacity: 1;
-}
-#colorpicker:hover ~ .hover_detail4 #choosecolor{
-  opacity: 1;
+  background: #32174d;
+  box-shadow: 0 0 20px #ccc;
+  border-radius: 15px 15px 15px 15px;
+  color: white;
 }
 /* .chatting_area{
   background: white;
