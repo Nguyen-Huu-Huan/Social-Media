@@ -23,8 +23,6 @@ window.onload=function () {
   var milestone_button = document.querySelector(".change_milestone");
   var edit_milestone = document.querySelector(".edit_milestone");
   var close_milestone = document.querySelector(".close_milestone");
-  var change_background = document.querySelector(".change_background");
-  var background = document.querySelector(".background");
   var heart_icon = document.querySelectorAll(".heart_icon");
   var comment_icon = document.querySelectorAll(".comment_icon");
   var share_icon = document.querySelectorAll(".share_icon");
@@ -83,10 +81,6 @@ window.onload=function () {
         }
       })
   });
-  // Change background
-  change_background.addEventListener("mouseover", function upload_photo() {
-    background.style = "filter: blur(5px);cursor: pointer;";
-  })
   // Change photo
   change_profile_photo_button.addEventListener("click", function upload_photo() {
     change_profile_photo.style.display="block";

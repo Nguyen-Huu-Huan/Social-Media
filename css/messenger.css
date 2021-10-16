@@ -18,6 +18,9 @@ button{
 .col-10{
   flex-basis: 10%;
 }
+.col-15{
+  flex-basis: 15%;
+}
 .col-20{
   flex-basis: 20%;
 }
@@ -65,7 +68,9 @@ button{
   margin-left: 5vw;
   display: flex;
   align-items: center;
-  width: 25%;
+  position: relative;
+  width: 10rem;
+  transition: 0.2s ease-in;
 }
 .search_bar_input{
   border-radius: 20px 20px 20px 20px;
@@ -75,7 +80,10 @@ button{
   padding-left: 35px;
 }
 .search_icon{
-  margin-left: -43%;
+  position: absolute;
+  padding-left: 15px;
+  left: 0px;
+
 }
 .group_info{
   width: 45%;
@@ -322,6 +330,7 @@ button{
   margin: 10px;
   border-radius: 50%;
   border: 1px solid #323232;
+  border-style: none;
 }
 #colorpicker{
   cursor: pointer;
@@ -355,7 +364,7 @@ input[type=color]::-webkit-color-swatch {
 }
 
 input[type=color]::-webkit-color-swatch-wrapper {
-    padding: 0;
+  padding: 0;
 }
 
 .detail4_button_wrapper{
@@ -383,12 +392,7 @@ input[type=color]::-webkit-color-swatch-wrapper {
   border-radius: 15px 15px 15px 15px;
   color: white;
 }
-/* .chatting_area{
-  background: white;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-} */
+
 .chat_user_img_wrapper{
   display: flex;
   align-items: flex-end;
@@ -439,7 +443,7 @@ input[type=color]::-webkit-color-swatch-wrapper {
 .message_time_received{
   position: absolute;
   bottom: 50%;
-  right: -4em;
+  right: -4.8em;
   opacity: 0;
   line-height: 0;
   transition: 0.5s ease all;
@@ -447,10 +451,10 @@ input[type=color]::-webkit-color-swatch-wrapper {
 .message_time_sent{
   position: absolute;
   bottom: 50%;
-  line-height: 0;
-  left: -4em;
+  left: -4.8em;
   color: black;
   opacity: 0;
+  line-height: 0;
   transition: 0.5s ease all;
 }
 .content p:hover+.message_time_received, .content p:hover+.message_time_sent{
@@ -507,8 +511,8 @@ input[type=color]::-webkit-color-swatch-wrapper {
 .upload_function_div{
   position: absolute;
   width: 350px;
-  height: 120px;
-  top:-135px;
+  height: auto;
+  bottom: 2px;
   background: white;
   margin-bottom:40px;
   border-radius: 10px 10px 10px 10px;

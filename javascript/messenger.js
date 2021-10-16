@@ -1,3 +1,15 @@
+function lighten_search_bar() {
+  var search_bar = document.querySelector(".search_bar_input");
+  var search_bar_div = document.querySelector(".search_bar_div");
+  search_bar.style="background:white;border-color:red;";
+  search_bar_div.style= "width: 30%;";
+}
+function darken_search_bar() {
+  var search_bar = document.querySelector(".search_bar_input");
+  var search_bar_div = document.querySelector(".search_bar_div");
+  search_bar.style="background: #EBECF0;border-color:black;";
+  search_bar_div.style= "width: 10rem;";
+}
 function OpenChangeBox() {
   document.querySelector(".change_logic").style.display = 'block';
   document.querySelector("body").querySelectorAll("input:not(input.change_input)").forEach((input) => { input.disabled = true; })

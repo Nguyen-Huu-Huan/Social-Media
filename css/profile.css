@@ -2,6 +2,9 @@
 button{
   cursor: pointer;
 }
+.col-15{
+  flex-basis: 15%;
+}
 .col-20{
   flex-basis: 20%;
 }
@@ -102,21 +105,19 @@ body{
   overflow: hidden;
 }
 .change_background{
+  position: absolute;
+  left: 45%;
+  top: 45%;
   display: none;
   opacity: 0;
+  cursor: pointer;
 }
-.background:hover{
+.background:hover>img{
   filter: blur(5px);
   cursor: pointer;
 }
-.background:hover+.change_background, .change_background:hover{
+.background:hover>.change_background{
   display: block;
-  position: absolute;
-  left: 45%;
-  top: 250px;
-  opacity: 1;
-}
-.background:hover .change_background{
   opacity: 1;
   z-index: 60;
 }
@@ -193,11 +194,12 @@ body{
   height: 30px;
   width: 80%;
   padding-left: 40px;
+  transition: 0.3s ease-in-out;
 }
 .search_icon{
   position: absolute;
   padding-left: 15px;
-  padding-top: 5px;
+  padding-top: 7px;
   left: 0px;
 }
 .side_info{
@@ -434,7 +436,7 @@ body{
 .post_action_div{
   position: absolute;
   width: 300px;
-  height: 200px;
+  height: auto;
   background: white;
   margin-top:40px;
   border-radius: 10px 10px 10px 10px;
