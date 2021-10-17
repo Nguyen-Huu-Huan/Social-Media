@@ -19,13 +19,13 @@
     <div class="group_header col-50 row" style="display: flex;justify-content: space-between;">
       <div class="top_group_buttons row" style="font-size: 2rem;display: flex; justify-content: center; align-items: center;">
         <div class="group_button_wrapper">
-          <i class="bi bi-pin-angle-fill"></i>
+          <i class="bi bi-pin-angle"></i>
         </div>
-        <div class="group_button_wrapper details_toggle">
-          <i class="fas fa-info"></i>
+        <div class="group_button_wrapper appearance_setting">
+          <i class="bi bi-brush"></i>
         </div>
         <div class="group_button_wrapper">
-          <i class="bi bi-gear-fill"></i>
+          <i class="bi bi-gear"></i>
         </div>
       </div>
       <div class="group_info_wrapper row">
@@ -43,9 +43,21 @@
         </div>
       </div>
     </div>
-    <div class="search_bar_div" style="flex-grow:1">
-      <input type="text" name="" value="" placeholder="Search Message.." class="search_bar_input" onfocus="lighten_search_bar()" onblur="darken_search_bar()">
-      <i class="fa fa-search search_icon" aria-hidden="true"></i>
+    <div class="utility_wrapper">
+      <div class="search_bar_div">
+        <input type="text" name="" value="" placeholder="Search Message.." class="search_bar_input" onfocus="lighten_search_bar()" onblur="darken_search_bar()">
+        <i class="fa fa-search search_icon" aria-hidden="true"></i>
+      </div>
+      <div class="row utility_button" style="justify-content:space-around; max-width: 8rem;">
+        <div class="icon_button_wrapper" style="cursor:pointer;">
+          <i class="bi bi-list-ul" style="font-size: 2.5rem;" id="details_toggle"></i>
+          <span id="toggle_details">Toggle Details</span>
+        </div>
+        <div class="icon_button_wrapper">
+          <a href="profile.html"><i class="bi bi-x-circle" style="font-size: 2.5rem;"></i></a>
+        </div>
+      </div>
+
     </div>
 
   </section>
@@ -264,9 +276,6 @@
     <div class="group_details col-30">
       <div class="detail1">
         <h1>Details</h1>
-        <div class="close_detail">
-          <a href="index.html"><img src="https://img.icons8.com/ios/50/000000/circled-x.png"></a>
-        </div>
       </div>
       <div class="detail2">
         <div class="current_user">

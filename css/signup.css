@@ -2,6 +2,7 @@
 body {
   font-family: 'Montserrat', sans-serif;
   font-size:calc(7px + 0.5vw);
+  margin: 0;
 }
 body {  background: 'signup_background.jpg';
 max-width: 100%;}
