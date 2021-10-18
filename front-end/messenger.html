@@ -208,11 +208,11 @@
     let colorpicker = document.getElementById("colorpicker");
     let background_message_sent = document.querySelectorAll("div.m_sent>.content");
     let text = document.querySelectorAll("div.m_sent>.content>p");
-    colorpicker.addEventListener("input", function(event){
+    colorpicker.addEventListener("input", function(){
         hex = colorpicker.value;
         hex_to_rgb = [parseInt(hex.charAt(1)+hex.charAt(2), 16), parseInt(hex.charAt(3)+hex.charAt(4), 16), parseInt(hex.charAt(5)+hex.charAt(6), 16)];
         socket.emit('message_sender_background', hex_to_rgb);
-    }
+    });
     socket.on('change_sender_chat_background', data => {
         background_message_sent.forEach((item, i) => {
           background_message_sent[i].style.background = '#'+data[0]+data[1]+data[2];
