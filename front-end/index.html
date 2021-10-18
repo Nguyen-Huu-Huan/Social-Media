@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Registration</title>
+    <link rel="stylesheet" href="css/signup.css">
+    <script type="text/javascript" src="javascript/signup.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+  </head>
+  <body background="signup_background.png">
+    <div class="">
+      <!-- <img src="decoration_figure.png" alt="" class="decoration_figure"> -->
+      <img src="social-media.png" alt="" class="decoration_figure">
+    </div>
+    <div class="row">
+      <div class="banner col-40">
+        <video src="video_banner.mp4" autoplay muted loop style="width: 100%;border-style:none;margin-bottom:-2px;"></video>
+        <video src="video_left_banner_bottom.mp4" autoplay muted loop style="width: 100%;margin-top:-2px;"></video>
+      </div>
+      <div class="right_content col-55">
+        <img src="rmit_logo.png" alt="" style="width: 40%;">
+        <h1 class="social_hub_title">Social Hub</h1>
+        <h1 class="for_title" style="font-size: 3vw; line-height: 0.5rem; margin-left: 8vw;margin-top:3vw;">for</h1>
+        <h1 class="group_colab_title">IT Group Collaboration</h1>
+        <br>
+        <a href="profile.html" style="text-decoration:none;"><h2 class="join_us_now">Join Us Now</h2></a>
+      </div>
+      
+    </div>
+  </body>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    socket.on('message', message => {
+      console.log(message);
+    })
+  </script>
+</html>

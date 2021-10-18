@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Messenger</title>
+  <link rel="stylesheet" href="css/messenger.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <section class="top">
+    <a href="#" class="logo_a col-20"><img src="logo.png" alt="logo" class="logo_img"></a>
+    <div class="group_header col-50 row" style="display: flex;justify-content: space-between;">
+      <div class="top_group_buttons row" style="font-size: 2rem;display: flex; justify-content: center; align-items: center;">
+        <div class="group_button_wrapper">
+          <i class="bi bi-pin-angle"></i>
+        </div>
+        <div class="group_button_wrapper appearance_setting">
+          <i class="bi bi-brush"></i>
+        </div>
+        <div class="group_button_wrapper">
+          <i class="bi bi-gear"></i>
+        </div>
+      </div>
+      <div class="group_info_wrapper row">
+        <div class="group_info">
+          <h1>Building IT System</h1>
+          <div class="row">
+            <p class="online_status_p">Online |</p>
+            <div class="online_status_img_container">
+              <img src="https://img.icons8.com/wired/64/000000/circled.png" class="online_status_img">
+            </div>
+          </div>
+        </div>
+        <div class="group_image">
+          <img src="group_logo.jpg" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="utility_wrapper">
+      <div class="search_bar_div">
+        <input type="text" name="" value="" placeholder="Search Message.." class="search_bar_input" onfocus="lighten_search_bar()" onblur="darken_search_bar()">
+        <i class="fa fa-search search_icon" aria-hidden="true"></i>
+      </div>
+      <div class="row utility_button" style="justify-content:space-around; max-width: 8rem;">
+        <div class="icon_button_wrapper" style="cursor:pointer;">
+          <i class="bi bi-list-ul" style="font-size: 2.5rem;" id="details_toggle"></i>
+          <span id="toggle_details">Toggle Details</span>
+        </div>
+        <div class="icon_button_wrapper">
+          <a href="profile.html"><i class="bi bi-x-circle" style="font-size: 2.5rem;"></i></a>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+  <section class="body row">
+    <div class="side_group_icon col-5">
+      <div class="group_list row">
+        <img src="group_logo.jpg" alt="">
+        <img src="https://img.icons8.com/material-outlined/24/000000/filled-circle--v2.png" class="online_status_2" style="width: 15px; height: 15px;">
+      </div>
+      <div class="group_list row">
+        <img src="group2_logo.jpg" alt="">
+        <img src="https://img.icons8.com/material-outlined/24/000000/filled-circle--v2.png" class="online_status_2" style="width: 15px; height: 15px;">
+      </div>
+      <div class="group_list row">
+        <img src="group3_logo.jpg" alt="">
+        <img src="https://img.icons8.com/material-outlined/24/000000/filled-circle--v2.png" class="online_status_2" style="width: 15px; height: 15px;">
+      </div>
+      <img src="" alt=""><br>
+      <img src="" alt=""><br>
+      <img src="" alt=""><br>
+      <img src="" alt=""><br>
+      <img src="" alt=""><br>
+      <img src="" alt=""><br>
+      <a href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
+        </svg>
+      </a>
+    </div>
+    <div class="chatting_area">
+      <div class="chat_box">
+        
+      </div>
+      <div class="typing_area">
+        <form class="row input_form_wrapper" action="index.html" method="post">
+          <input type="text" name="" value="" class="input_chat" placeholder="Type messages">
+          <div class="adding_files">
+            <div class="adding_file_wrapper">
+              <a class="adding_file_button post_action_button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                </svg>
+              </a>
+              <div class="upload_function_div">
+                <div class="upload_file row">
+                  <div class="post_action_icon_wrapper col-20">
+                    <i class="bi bi-archive-fill"></i>
+                  </div>
+                  <div class="">
+                    <h4>Upload file</h4>
+                    <p>zip, docx, pptx, txt</p>
+                  </div>
+                </div>
+                <div class="upload_media row">
+                  <div class="post_action_icon_wrapper col-20">
+                    <i class="bi bi-play-circle-fill"></i>
+                  </div>
+                  <div class="post_action_content">
+                    <h4>Upload Media</h4>
+                    <p class="">png, jpg, gif, mp4, mp3, etc.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="group_details col-30">
+      <div class="detail1">
+        <h1>Details</h1>
+      </div>
+      <div class="detail2">
+        <div class="current_user">
+          <img src="group_logo.jpg" alt="">
+        </div>
+        <a href="#" class="callimage">
+          <i class="bi bi-camera"></i>
+        </a>
+      </div>
+      <div class="detail3">
+        <div class="current_user_name">Alan Walker</div>
+        <div class="nickname">
+          <span id='nickname'>This is a nickname</span>
+          <button type="button" name="button" onclick='OpenChangeBox()' class="changenickname"><i class="fas fa-plus plus"></i></button>
+
+        </div>
+      </div>
+
+      <div class="detail4">
+        <div class="detail4_button_wrapper">
+          <button type="button" name="button" class="paperclip_func"><i class="fas fa-paperclip"></i></button>
+          <span id="paperclip">Papper Clip</span>
+        </div>
+        <div class="detail4_button_wrapper">
+          <button type="button" name="button" class="info_func"><i class="fas fa-info"></i></button>
+          <span id="groupinformation">Group Information</span>
+        </div>
+        <div class="detail4_button_wrapper">
+          <button type="button" name="button" class="users_func"><i class="fas fa-users"></i></button>
+          <span id="users">Users</span>
+        </div>
+        <div class="detail4_button_wrapper">
+          <input type="color" id="colorpicker">
+          <span id="choosecolor">Color Picker</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="change_logic">
+    <div class="description">Enter your name here:</div>
+    <div class="">
+      <input type="text" name="" value="" placeholder="Enter a nickname" class="change_input">
+      <button type="button" name="button" onclick='CloseChangeBox()' id="change_input">Change</button>
+      <div class='nickname_error'></div>
+    </div>
+  </div>
+  <script type="module" src="javascript/messenger.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    var current_time = new Date().toLocaleString((window.navigator.userLanguage || window.navigator.language), {
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
+      });
+    var current_time = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+    document.querySelector('.input_form_wrapper').addEventListener('submit', (e) => {
+      e.preventDefault();
+      message = document.querySelector('.input_chat').value;
+      document.querySelector('.input_chat').value = "";
+      document.querySelector('.chat_box').insertAdjacentHTML('beforeend', `<div class="message m_sent"><div class="content"><p>${message}</p><span class="message_time_sent">${current_time}</span></div></div>`);
+      socket.emit('message_sent', message);
+      document.querySelector('.chat_box').scrollTo(0,document.querySelector('.chat_box').scrollHeight);
+    })
+    socket.on('join_chat', (message) => {
+      document.querySelector('.chat_box').insertAdjacentHTML('beforeend', `<p style="text-align:center;">${message}</p>`);
+    })
+    socket.on('user-chat', (message) => {      
+      document.querySelector('.chat_box').insertAdjacentHTML('beforeend', `<div class="message m_received"><div class="chat_user_img_wrapper"><img src="default_profile_image.jpg" alt="" class="chat_user_img"></div><div class="content"><p>${message}</p><span class="message_time_received">${current_time}</span></div></div>`);
+      document.querySelector('.chat_box').insertAdjacentHTML('beforeend', `<audio class="new_message_noti" controls autoplay style="display: none;"><source src="new_message_noti.mp3"></audio>`);
+      document.querySelector('.new_message_noti').play();
+      document.querySelector('.chat_box').scrollTo(0,document.querySelector('.chat_box').scrollHeight);
+    })
+    socket.on('user-disconnect', (message) => {
+      document.querySelector('.chat_box').insertAdjacentHTML('beforeend', `<p style="text-align: center;">${message}</p>`)
+    })
+    
+  </script>
+</body>
+
+</html>

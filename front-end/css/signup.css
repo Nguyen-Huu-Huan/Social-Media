@@ -1,0 +1,98 @@
+/* Similar code themes */
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-size:calc(7px + 0.5vw);
+  margin: 0;
+}
+body {  background: 'signup_background.jpg';
+max-width: 100%;}
+button{
+  cursor: pointer;
+}
+.col-20{
+  flex-basis: 20%;
+}
+.col-30{
+  flex-basis: 30%;
+}
+.col-40{
+  flex-basis: 40%;
+}
+.col-45{
+  flex-basis: 45%;
+}
+.col-50{
+  flex-basis: 50%;
+}
+.col-55{
+  flex-basis: 55%;
+}
+.col-60{
+  flex-basis: 60%;
+}
+.col-70{
+  flex-basis: 70%;
+}
+.col-80{
+  flex-basis: 80%;
+}
+.row{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.logo_a{
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo_img{
+  width: 100%;
+}
+
+.img_center{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.banner *{
+  transition: 1s ease;
+  margin-left: -7.7px;
+}
+.right_content{
+  margin-left: 3vw;
+  width: 100%;
+}
+.social_hub_title, .group_colab_title{
+  font-size: 3.5vw;
+  transition: 0.5s ease;
+}
+.group_colab_title{
+  color: white;
+  background: red;
+  display: inline-block;
+}
+
+.join_us_now{
+   border:0.3vw solid black;
+   font-size: 2vw;
+   display: inline-block;
+   padding-left: 0.8vw;
+   padding-right: 0.8vw;
+   border-radius: 18px 18px 18px 18px;
+   transition: 0.5s ease;
+}
+.join_us_now:hover{
+  background: black;
+  color: white;
+}
+.decoration_figure{
+  position: absolute;
+  right: 0;
+  margin-right: 7vw;
+  margin-top: 3vw;
+  width: 20vw;
+}
