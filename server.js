@@ -12,6 +12,9 @@ io.on('connection', socket => {
     socket.on('message_sent', data => {
         socket.broadcast.emit('user-chat', data);
     })
+    socket.on('message_sender_background', data => {
+        socket.emit('change_sender_chat_background', data);
+    })
     io.emit('join_chat', `user ${socket.id}  has joined the chat`)
     socket.on('disconnect', () => {
         socket.broadcast.emit('user-disconnect', `User ${socket.id} has left the room chat`);
