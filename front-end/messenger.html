@@ -214,15 +214,15 @@
         socket.emit('message_sender_background', hex_to_rgb);
     });
     socket.on('change_sender_chat_background', data => {
-        background_message_sent.forEach((item, i) => {
-          background_message_sent[i].style.background = '#'+data[0]+data[1]+data[2];
-          if (Math.round(data[0] * 0.299+data[1] * 0.587+data[2] * 0.114)>125){
-            text[i].style.color = "black";
-          }else{
-            text[i].style.color = "white";
-          }
-          console.log('hello world');
-        });
+      console.log(data);
+      background_message_sent.forEach((item, i) => {
+        background_message_sent[i].style.background = '#'+data[0]+data[1]+data[2];
+        if (Math.round(data[0] * 0.299+data[1] * 0.587+data[2] * 0.114)>125){
+          text[i].style.color = "black";
+        }else{
+          text[i].style.color = "white";
+        }
+      });
     });
         
   </script>
