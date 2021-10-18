@@ -7,7 +7,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
-app.use(express.static(path.join(__dirname, 'front-end'));
+app.use(express.static(path.join(__dirname, 'front-end')));
 io.on('connection', socket => {
     socket.on('message_sent', data => {
         socket.broadcast.emit('user-chat', data);
