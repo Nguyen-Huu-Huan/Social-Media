@@ -206,13 +206,14 @@
       document.querySelector('.chat_box').insertAdjacentHTML('beforeend', `<p style="text-align: center;">${message}</p>`)
     })
     let colorpicker = document.getElementById("colorpicker");
-    let background_message_sent = document.querySelectorAll("div.m_sent>.content");
-    let text = document.querySelectorAll("div.m_sent>.content>p");
+    
     colorpicker.addEventListener("input", function(){
         hex = colorpicker.value;        
         socket.emit('message_sender_background', hex);
     });
     socket.on('change_sender_chat_background', data => {
+      let background_message_sent = document.querySelectorAll("div.m_sent>.content");
+      let text = document.querySelectorAll("div.m_sent>.content>p");
       hex_to_rgb = [parseInt(data.charAt(1)+data.charAt(2), 16), parseInt(data.charAt(3)+data.charAt(4), 16), parseInt(data.charAt(5)+data.charAt(6), 16)];
       background_message_sent.forEach((item, i) => {
         item.style.background = "green";
