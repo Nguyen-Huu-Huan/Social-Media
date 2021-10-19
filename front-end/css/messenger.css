@@ -484,10 +484,7 @@ input[id=change_background_color]::-webkit-color-swatch-wrapper {
   position: relative;
   box-shadow: 0 5px 10px rgb(0 0 0 / 0.2);
 }
-.m_sent>.content{
-  background: red;
-  color: white;
-}
+
 .m_received>.content{
   background: #FBFBFC;
   color: black;
