@@ -167,6 +167,28 @@ button{
 }
 .group_list{
   margin-bottom: 20px;
+  position: relative;
+}
+.group_name_1, .group_name_2, .group_name_3, .group_name_4{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  color: red;
+  width: 200px;
+  z-index: 20;
+  margin: 10px 0 0 50px;
+  transition: 0.3s ease-in-out;
+  color: white;
+  background: black;
+  border-radius: 15px 15px 15px 15px;
+  opacity: 0;
+}
+#group_logo_1:hover ~ .group_name_1, #group_logo_2:hover ~.group_name_2, #group_logo_3:hover ~.group_name_3, #group_logo_4:hover ~.group_name_4{
+  opacity: 1;
+  background: #4B0082;
+  box-shadow: 0 0 20px #ccc;
 }
 .online_status_2{
   background: #0BDA51;
