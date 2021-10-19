@@ -104,12 +104,10 @@ window.onload=function () {
         return false;
       };
   };
-  var change_box_color = document.getElementById("change_box_color").value;
-  var change_box_color1 = document.getElementById("change_box_color1").value;
-  let change_box_color_rgb = "rgba("+parseInt(change_box_color.charAt(1)+change_box_color.charAt(2), 16).toString()+", "+ parseInt(change_box_color.charAt(3)+change_box_color.charAt(4), 16).toString()+", "+parseInt(change_box_color.charAt(5)+change_box_color.charAt(6), 16).toString()+", 0.5)";
-  let change_box_color1_rgb = "rgba("+parseInt(change_box_color1.charAt(1)+change_box_color1.charAt(2), 16).toString()+", "+ parseInt(change_box_color1.charAt(3)+change_box_color1.charAt(4), 16).toString()+", "+parseInt(change_box_color1.charAt(5)+change_box_color1.charAt(6), 16).toString()+", 0.5)";
-  console.log(change_box_color_rgb);
-  console.log(change_box_color1_rgb);
+  var change_box_color = document.getElementById("change_box_color");
+  var change_box_color1 = document.getElementById("change_box_color1");
+  let change_box_color_rgb = "rgba("+parseInt(change_box_color.value.charAt(1)+change_box_color.value.charAt(2), 16).toString()+", "+ parseInt(change_box_color.value.charAt(3)+change_box_color.value.charAt(4), 16).toString()+", "+parseInt(change_box_color.value.charAt(5)+change_box_color.value.charAt(6), 16).toString()+", 0.5)";
+  let change_box_color1_rgb = "rgba("+parseInt(change_box_color1.value.charAt(1)+change_box_color1.value.charAt(2), 16).toString()+", "+ parseInt(change_box_color1.value.charAt(3)+change_box_color1.value.charAt(4), 16).toString()+", "+parseInt(change_box_color1.value.charAt(5)+change_box_color1.value.charAt(6), 16).toString()+", 0.5)";
   change_box_color.addEventListener("input", function(){
     document.getElementsByClassName("chat_box")[0].style.background = `linear-gradient(to right, ${change_box_color_rgb} 50%,${change_box_color1_rgb} 50%)`;
   })
