@@ -110,6 +110,6 @@ window.onload=function () {
     document.getElementsByClassName("chat_box")[0].style.background = `linear-gradient(to right, ${change_box_color.value},${change_box_color1.value})`
   })
   change_box_color1.addEventListener("input", function(){
-    document.getElementsByClassName("chat_box")[0].style.background = `linear-gradient(${change_box_color.value},${change_box_color1.value})`
+    document.getElementsByClassName("chat_box")[0].style.background = `linear-gradient(to right, ${change_box_color.value},${change_box_color1.value})`
   })
 }
