@@ -202,6 +202,7 @@
     document.querySelector('.input_form_wrapper').addEventListener('submit', (e) => {
       e.preventDefault();
       let colorpicker_current_color = document.getElementById("change_background_color").value;
+      console.log(colorpicker_current_color);
       message = document.querySelector('.input_chat').value;
       document.querySelector('.input_chat').value = "";
       var background_color = document.getElementById("change_background_color").value;
