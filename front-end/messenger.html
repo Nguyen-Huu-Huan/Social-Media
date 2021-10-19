@@ -202,18 +202,17 @@
     document.querySelector('.input_form_wrapper').addEventListener('submit', (e) => {
       e.preventDefault();
       let colorpicker_current_color = document.getElementById("change_background_color").value;
-      let hex_to_rgb = [parseInt(data.charAt(1)+data.charAt(2), 16), parseInt(data.charAt(3)+data.charAt(4), 16), parseInt(data.charAt(5)+data.charAt(6), 16)];
-      let message_p_color = ""
+      let hex_to_rgb = [parseInt(colorpicker_current_color.charAt(1)+colorpicker_current_color.charAt(2), 16), parseInt(colorpicker_current_color.charAt(3)+colorpicker_current_color.charAt(4), 16), parseInt(colorpicker_current_color.charAt(5)+colorpicker_current_color.charAt(6), 16)];
+      let message_p_color = "";
       if (Math.round(hex_to_rgb[0] * 0.299+hex_to_rgb[1] * 0.587+hex_to_rgb[2] * 0.114)>125){
           message_p_color = "black";
       }else{
           message_p_color = "white";
       }
-      console.log(colorpicker_current_color);
       message = document.querySelector('.input_chat').value;
       document.querySelector('.input_chat').value = "";
       var background_color = document.getElementById("change_background_color").value;
-      document.querySelector('.chat_box').insertAdjacentHTML('beforeend', `<div class="message m_sent"><div class="content" `+`style="background: ${colorpicker_current_color};">`+`<p style="color: ${message_p_color}">`+`${message}</p><span class="message_time_sent">${current_time}</span></div></div>`);
+      document.querySelector('.chat_box').insertAdjacentHTML('beforeend', `<div class="message m_sent"><div class="content" ` + `style="background: ${colorpicker_current_color};">` + `<p style="color: ${message_p_color};">` + `${message}</p><span class="message_time_sent">${current_time}</span></div></div>`);
       socket.emit('message_sent', message);
       document.querySelector('.chat_box').scrollTo(0,document.querySelector('.chat_box').scrollHeight);
     })
