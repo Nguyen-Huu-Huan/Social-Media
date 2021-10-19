@@ -206,7 +206,7 @@
       message = document.querySelector('.input_chat').value;
       document.querySelector('.input_chat').value = "";
       var background_color = document.getElementById("change_background_color").value;
-      document.querySelector('.chat_box').insertAdjacentHTML('beforeend', `<div class="message m_sent" style="background: \`${colorpicker_current_color}\`;"><div class="content"><p>${message}</p><span class="message_time_sent">${current_time}</span></div></div>`);
+      document.querySelector('.chat_box').insertAdjacentHTML('beforeend', `<div class="message m_sent" `+`style="background: ${colorpicker_current_color};">`+`<div class="content"><p>${message}</p><span class="message_time_sent">${current_time}</span></div></div>`);
       socket.emit('message_sent', message);
       document.querySelector('.chat_box').scrollTo(0,document.querySelector('.chat_box').scrollHeight);
     })
