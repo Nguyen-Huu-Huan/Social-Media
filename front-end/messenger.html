@@ -226,7 +226,7 @@
       document.querySelector('.chat_box').scrollTo(0,document.querySelector('.chat_box').scrollHeight);
     })
     socket.on('user-disconnect', (message) => {
-      document.querySelector('.chat_box').insertAdjacentHTML('beforeend', `<div style="padding: 2px 2px 2px 2px; background: #c3c3c3;"><p style="text-align: center;">${message}</p></div>`)
+      document.querySelector('.chat_box').insertAdjacentHTML('beforeend', `<p style="text-align: center;">${message}</p>`)
     })
     let colorpicker = document.getElementById("change_background_color");
 
