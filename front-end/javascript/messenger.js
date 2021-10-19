@@ -70,4 +70,46 @@ window.onload=function () {
       group_details.style = "flex-basis: 30%";
     }
   })
+  let menu_button = document.querySelector('.bi-brush');
+  let drop_menu = document.querySelector('.color_menu');
+  var counter = 0;
+  menu_button.addEventListener("click", function () {
+    counter += 1;
+    if (counter%2 ==1){
+      drop_menu.style.opacity = 1;
+    }
+    else {
+      drop_menu.style.opacity = 0;
+    }
+  });
+  document.onclick = function(check){
+    if (check_outside_click(check, drop_menu)){
+      drop_menu.style.opacity = 0;
+      counter = 0;
+    }
+  };
+  function check_outside_click(event, elements) {
+      elements = document.querySelectorAll('.bi-brush, .color_menu *, color_menu');
+      var len = elements.length;
+      var check_click = true;
+      for (let i = 0; i<len; i++){
+        if (elements[i].contains(event.target) || event.target == elements[i]) {
+          check_click = false;
+        }
+      }
+      if (check_click) {
+        return true;
+      }
+      else {
+        return false;
+      };
+  };
+  var change_box_color = document.getElementById("change_box_color");
+  var change_box_color1 = document.getElementById("change_box_color1");
+  change_box_color.addEventListener("input", function(){
+    document.getElementsByClassName("chat_box")[0].style.background = `linear-gradient(${change_box_color.value},${change_box_color1.value})`
+  })
+  change_box_color1.addEventListener("input", function(){
+    document.getElementsByClassName("chat_box")[0].style.background = `linear-gradient(${change_box_color.value},${change_box_color1.value})`
+  })
 }

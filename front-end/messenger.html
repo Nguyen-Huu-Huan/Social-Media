@@ -28,6 +28,21 @@
           <i class="bi bi-gear"></i>
         </div>
       </div>
+      <div class="color_menu">
+        <li>
+          <div>
+            <input type="color" id="change_box_color">
+            <input type="color" id="change_box_color1">
+          </div>
+          <span>Box chat color</span>
+        </li>
+        <li>
+          <div>
+          <input type="color" id="change_background_color">
+          </div>
+          <span>Background color</span>
+        </li>
+      </div>
       <div class="group_info_wrapper row">
         <div class="group_info">
           <h1>Building IT System</h1>
@@ -163,10 +178,6 @@
           <button type="button" name="button" class="users_func"><i class="fas fa-users"></i></button>
           <span id="users">Users</span>
         </div>
-        <div class="detail4_button_wrapper">
-          <input type="color" id="colorpicker">
-          <span id="choosecolor">Color Picker</span>
-        </div>
       </div>
     </div>
   </section>
@@ -192,14 +203,15 @@
       e.preventDefault();
       message = document.querySelector('.input_chat').value;
       document.querySelector('.input_chat').value = "";
-      document.querySelector('.chat_box').insertAdjacentHTML('beforeend', `<div class="message m_sent"><div class="content"><p>${message}</p><span class="message_time_sent">${current_time}</span></div></div>`);
+      var background_color = document.getElementById("change_background_color").value;
+      document.querySelector('.chat_box').insertAdjacentHTML('beforeend', `<div class="message m_sent"><div class="content" style="background : ${background_color}"><p>${message}</p><span class="message_time_sent">${current_time}</span></div></div>`);
       socket.emit('message_sent', message);
       document.querySelector('.chat_box').scrollTo(0,document.querySelector('.chat_box').scrollHeight);
     })
     socket.on('join_chat', (message) => {
       document.querySelector('.chat_box').insertAdjacentHTML('beforeend', `<p style="text-align:center;">${message}</p>`);
     })
-    socket.on('user-chat', (message) => {      
+    socket.on('user-chat', (message) => {     
       document.querySelector('.chat_box').insertAdjacentHTML('beforeend', `<div class="message m_received"><div class="chat_user_img_wrapper"><img src="default_profile_image.jpg" alt="" class="chat_user_img"></div><div class="content"><p>${message}</p><span class="message_time_received">${current_time}</span></div></div>`);
       document.querySelector('.chat_box').insertAdjacentHTML('beforeend', `<audio class="new_message_noti" controls autoplay style="display: none;"><source src="new_message_noti.mp3"></audio>`);
       document.querySelector('.new_message_noti').play();
@@ -208,7 +220,7 @@
     socket.on('user-disconnect', (message) => {
       document.querySelector('.chat_box').insertAdjacentHTML('beforeend', `<p style="text-align: center;">${message}</p>`)
     })
-        let colorpicker = document.getElementById("colorpicker");
+        let colorpicker = document.getElementById("change_background_color");
 
     colorpicker.addEventListener("input", function(){
         hex = colorpicker.value;        
