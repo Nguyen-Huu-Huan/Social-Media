@@ -165,4 +165,38 @@ window.onload=function () {
       document.querySelector("body").querySelectorAll("div").forEach((div) => { div.style.opacity = "1" })
     }
   }
+  let menu_button = document.querySelector('.menu_a');
+  let drop_menu = document.querySelector('.Drop_down_menu');
+  var counter = 0;
+  menu_button.addEventListener("click", function () {
+    counter += 1;
+    if (counter%2 ==1){
+      drop_menu.style.opacity = 1;
+    }
+    else {
+      drop_menu.style.opacity = 0;
+    }
+  });
+  document.onclick = function(check){
+    if (check_outside_click(check, drop_menu)){
+      drop_menu.style.opacity = 0;
+      counter = 0;
+    }
+  };
+  function check_outside_click(event, elements) {
+      elements = document.querySelectorAll('.Drop_down_menu *, .menu_a, .Drop_down_menu');
+      var len = elements.length;
+      var check_click = true;
+      for (let i = 0; i<len; i++){
+        if (elements[i].contains(event.target) || event.target == elements[i]) {
+          check_click = false;
+        }
+      }
+      if (check_click) {
+        return true;
+      }
+      else {
+        return false;
+      };
+  };
 }
