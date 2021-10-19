@@ -201,6 +201,7 @@
     var current_time = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
     document.querySelector('.input_form_wrapper').addEventListener('submit', (e) => {
       e.preventDefault();
+      let colorpicker_current_color = document.getElementById("change_background_color").value;
       message = document.querySelector('.input_chat').value;
       document.querySelector('.input_chat').value = "";
       var background_color = document.getElementById("change_background_color").value;
@@ -212,7 +213,6 @@
       document.querySelector('.chat_box').insertAdjacentHTML('beforeend', `<p style="text-align:center;">${message}</p>`);
     })
     socket.on('user-chat', (message) => {     
-      let colorpicker_current_color = document.getElementById("change_background_color").value;
       document.querySelector('.chat_box').insertAdjacentHTML('beforeend', `<div class="message m_received"><div class="chat_user_img_wrapper"><img src="default_profile_image.jpg" alt="" class="chat_user_img"></div><div class="content"><p>${message}</p><span class="message_time_received">${current_time}</span></div></div>`);
       document.querySelector('.chat_box').insertAdjacentHTML('beforeend', `<audio class="new_message_noti" controls autoplay style="display: none;"><source src="new_message_noti.mp3"></audio>`);
       document.querySelector('.new_message_noti').play();
