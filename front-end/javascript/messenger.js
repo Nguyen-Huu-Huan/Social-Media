@@ -107,7 +107,7 @@ window.onload=function () {
   var change_box_color = document.getElementById("change_box_color");
   var change_box_color1 = document.getElementById("change_box_color1");
   change_box_color.addEventListener("input", function(){
-    document.getElementsByClassName("chat_box")[0].style.background = `linear-gradient(${change_box_color.value},${change_box_color1.value})`
+    document.getElementsByClassName("chat_box")[0].style.background = `linear-gradient(to right, ${change_box_color.value},${change_box_color1.value, })`
   })
   change_box_color1.addEventListener("input", function(){
     document.getElementsByClassName("chat_box")[0].style.background = `linear-gradient(${change_box_color.value},${change_box_color1.value})`
