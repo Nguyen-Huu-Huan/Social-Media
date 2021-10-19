@@ -226,7 +226,15 @@
       document.querySelector('.chat_box').scrollTo(0,document.querySelector('.chat_box').scrollHeight);
     })
     socket.on('user-disconnect', (message) => {
-      document.querySelector('.chat_box').insertAdjacentHTML('beforeend', `<p style="text-align: center;">${message}</p>`)
+      let colorpicker_current_color = document.getElementById("change_background_color").value;
+      let hex_to_rgb = [parseInt(colorpicker_current_color.charAt(1)+colorpicker_current_color.charAt(2), 16), parseInt(colorpicker_current_color.charAt(3)+colorpicker_current_color.charAt(4), 16), parseInt(colorpicker_current_color.charAt(5)+colorpicker_current_color.charAt(6), 16)];
+      let message_p_color = "";
+      if (Math.round(hex_to_rgb[0] * 0.299+hex_to_rgb[1] * 0.587+hex_to_rgb[2] * 0.114)>125){
+          message_p_color = "black";
+      }else{
+          message_p_color = "white";
+      }
+      document.querySelector('.chat_box').insertAdjacentHTML('beforeend', `<p style="text-align: center;"`+`background: ${message_p_color};`+`>${message}</p>`)
     })
     let colorpicker = document.getElementById("change_background_color");
 
