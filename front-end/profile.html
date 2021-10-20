@@ -4,7 +4,12 @@
     <meta charset="utf-8">
     <title>Social Media Website</title>
     <link rel="stylesheet" href="css/profile.css">
+<<<<<<< HEAD
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+=======
     <link rel="stylesheet" href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css>
+>>>>>>> 922927727250ff82f63f15eacbbd0d370d109cc5
     <script type="text/javascript" src="javascript/profile.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css">
@@ -92,13 +97,13 @@
         <a href="#" class="signin_option">Sign In</a>
       </div>
       <div class="login_form">
-        <form class="" action="index.html" method="post" style="width: 100%;">
+        <form class="" action="/login" method="post" style="width: 100%;">
           <div class="">
-            <input type="text" name="" value="" class="login_input">
+            <input type="text" name="email_signin" value="" class="login_input">
             <span class="placeholder">RMIT email</span>
           </div>
           <div class="">
-            <input type="password" name="" value="" class="login_input">
+            <input type="password" name="password_signin" value="" class="login_input">
             <span class="placeholder">Password</span>
           </div>
           <div class="row">
@@ -363,5 +368,22 @@
     <section class="vertical_navbar">
 
     </section>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+      document.querySelector(".rmit_email").addEventListener("input", function(e){
+        if (!!RegExp('s3[5-9]{1}[0-9]{5}@rmit.edu.vn').exec(document.querySelector('.rmit_email').value)){
+          console.log('hello world');
+          document.querySelector(".verify_email").disabled = false;
+          
+        }else{
+          document.querySelector(".verify_email").disabled = true;
+          console.log('nah');
+        }
+      })
+      document.querySelector(".verify_email").addEventListener("click", function(e){
+        socket.emit('verify_email', {'email_address': document.querySelector('.rmit_email').value, 'password': socket.id});
+      })
+    </script>
   </body>
 </html>
