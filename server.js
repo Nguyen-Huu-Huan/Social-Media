@@ -3,9 +3,9 @@ const path = require('path');
 const http = require('http');
 const socketio = require('socket.io');
 const mongoose = require('mongoose');
-const userModel = require("./models");
+// const userModel = require("./models");
 const bodyParserTest = require("body-parser");
-const { schema } = require('./models');
+// const { schema } = require('./models');
 const nodemailer = require('nodemailer');
 
 var transport = nodemailer.createTransport({
