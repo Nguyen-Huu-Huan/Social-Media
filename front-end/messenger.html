@@ -197,7 +197,7 @@
             hour: 'numeric',
             minute: 'numeric',
             second: 'numeric',
-      });
+    });
     var current_time = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
     document.querySelector('.input_form_wrapper').addEventListener('submit', (e) => {
       e.preventDefault();
@@ -231,8 +231,8 @@
     let colorpicker = document.getElementById("change_background_color");
 
     colorpicker.addEventListener("input", function(){
-        hex = colorpicker.value;        
-        socket.emit('message_sender_background', hex);
+      hex = colorpicker.value;        
+      socket.emit('message_sender_background', hex);
     });
     socket.on('change_sender_chat_background', data => {
       let background_message_sent = document.querySelectorAll("div.m_sent>.content");
@@ -247,6 +247,7 @@
         }
       });
     });
+    
   </script>
 </body>
 
