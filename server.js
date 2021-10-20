@@ -15,7 +15,6 @@ var transport = nodemailer.createTransport({
       pass: 'buildingitsystem'
     }
 })
-console.log(transport);
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
@@ -23,7 +22,7 @@ mongoose.connect('mongodb+srv://huan:buildingitsystem@cluster0.da9it.mongodb.net
 const mongo_db = mongoose.connection;
 mongo_db.on("error", console.error.bind(console, "connection failure: "));
 mongo_db.once("open", function(){
-    console.log('hello world');
+    console.log('database connection established');
 })
 
 const userSchema = new mongoose.Schema({
@@ -69,7 +68,6 @@ io.on('connection', socket => {
         socket.broadcast.emit('user-disconnect', `User ${socket.id} has left the room chat`);
     })
     socket.on('verify_email', receiver => {
-        console.log('socket sent');
         transport.sendMail({
             from: "rmit.itstudent@gmail.com",
             to: receiver['email_address'],
