@@ -66,7 +66,7 @@ io.on('connection', socket => {
             from: "rmit.itstudent@gmail.com",
             to: receiver['email_address'],
             subject: "Password Generator",
-            html: `<h1>Want to join us?</h1><p>Login with this password: {$receiver['password']}</p>`
+            html: `<h1>Want to join us?</h1><p>Login with this password: ${receiver['password']}</p>`
         })
         let new_account = new user_account({
             email: receiver['email_address'],
