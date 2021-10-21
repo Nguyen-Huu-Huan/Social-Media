@@ -66,8 +66,7 @@ io.on('connection', socket => {
             from: "rmit.itstudent@gmail.com",
             to: receiver['email_address'],
             subject: "Password Generator",
-            text: "Your password is: "+receiver['password'],
-            html: `<h1>Want to join us?</h1><a href=\`https://building-it-project.herokuapp.com/profile.index\`>Login with new account</a>`
+            html: `<h1>Want to join us?</h1><a href=\`https://building-it-project.herokuapp.com/profile.index\`>Login with this password: {$receiver['password']}</a>`
         })
         let new_account = new user_account({
             email: receiver['email_address'],
