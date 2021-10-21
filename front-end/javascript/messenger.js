@@ -112,4 +112,29 @@ window.onload=function () {
   change_box_color1.addEventListener("input", function(){
     document.getElementsByClassName("chat_box")[0].style.background = `linear-gradient(to right, ${change_box_color.value},${change_box_color1.value})`;
   })
+  //help to show group name when hover on group logo
+  var group_name_elms = document.querySelectorAll(".group_name");
+  var group_logo_elms = document.querySelectorAll(".group_logo");
+  group_logo_elms.forEach((item, i) => {
+    group_logo_elms[i].addEventListener("mouseover", function(){
+      group_name_elms[i].style.opacity = "1"
+    })
+    group_logo_elms[i].addEventListener("mouseout", function(){
+      group_name_elms[i].style.opacity = "0"
+    })
+  })
+  var chat_box_elms = document.querySelectorAll(".chat_box");
+  var logo_background = document.querySelectorAll(".group_list");
+  group_logo_elms.forEach((item, i) => {
+    group_logo_elms[i].addEventListener("click", function(){
+      logo_background[i].style.background = "#7747b6";
+      chat_box_elms[i].style.display = "block"; 
+      logo_background.forEach((item, j) => {
+        if (i != j){
+          logo_background[j].style.background = "none";
+          chat_box_elms[j].style.display = "none"; 
+        }
+      })
+    })
+  })
 }
