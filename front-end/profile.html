@@ -96,16 +96,16 @@
       <div class="login_form">
         <form class="" action="/login" method="post" style="width: 100%;">
           <div class="">
-            <input type="text" name="email_signin" value="" class="login_input">
+            <input type="text" name="email_signin" value="" class="login_input email_signin">
             <span class="placeholder">RMIT email</span>
           </div>
           <div class="">
-            <input type="password" name="password_signin" value="" class="login_input">
+            <input type="password" name="password_signin" value="" class="login_input password_signin">
             <span class="placeholder">Password</span>
           </div>
           <div class="row">
             <a href="#" class="col-50">Forgot Password</a>
-            <input type="submit" name="" value="Sign in" class="col-50">
+            <input type="submit" name="" value="Sign in" class="col-50 submit_login">
           </div>
         </form>
       </div>
@@ -380,6 +380,15 @@
       })
       document.querySelector(".verify_email").addEventListener("click", function(e){
         socket.emit('verify_email', {'email_address': document.querySelector('.rmit_email').value, 'password': socket.id});
+      })
+      document.querySelector('.submit_login').addEventListener('click', function(e) {
+        e.preventDefault();
+        console.log(document.querySelector('.email_signin').value);
+        console.log(document.querySelector('.password_signin').value);
+        socket.emit('login_auth', {'email': document.querySelector('.email_signin').value, 'password': document.querySelector('.password_signin').value})
+      })
+      socket.on('login_failed', function(){
+        console.log('login failed');
       })
     </script>
   </body>
