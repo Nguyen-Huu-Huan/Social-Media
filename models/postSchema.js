@@ -7,6 +7,6 @@ const postSchema = new mongoose.Schema({
     course_instructor: {type: String},
     current_teammate: {type: Array},
     post_owner: {type: String},
-    post_date_time: {type: String},
+    post_date: {type: Date},
     post_type: {type: String}
 })
