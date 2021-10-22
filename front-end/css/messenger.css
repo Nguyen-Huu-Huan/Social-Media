@@ -172,7 +172,6 @@ button{
   align-items: center;
   border: 1px solid #D3D3D3;
   height: 670px;
-  flex-basis: 5%;
   overflow-y: scroll;
   overflow-x: visible;
   box-sizing: border-box;
@@ -288,14 +287,12 @@ button{
   float: right;
 }
 .chatting_area{
-  width: 60%;
   background: #DCDCDC;
   flex-grow:1;
   height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
 }
 .chat_box_container{
   flex-basis: 90%;
@@ -303,9 +300,8 @@ button{
   margin: 0;
   z-index: 0;
 }
-.chat_box_container *{
+.chat_box_container .chat_box{
   overflow-y: scroll;
-  flex-basis: 90%;
   width: 100%;
   height: 100%;
   position: absolute;
