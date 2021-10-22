@@ -77,7 +77,7 @@
 
   </section>
   <section class="body row">
-    <div class="side_group_icon col-5">
+    <div class="side_group_icon col-10">
       <div class="group_collections">
         <div class="group_list">
           <div>
@@ -113,7 +113,7 @@
           <input type="text" class="input_group_description" placeholder="Enter short description for your group">
           <div class="commit_button">
             <span class="add_group_error"></span>
-            <button>Create a new group</button>
+            <button class="create_group">Create a new group</button>
           </div>  
         </div>
       </div>
@@ -122,7 +122,7 @@
     </div>
     <div class="chatting_area">
       <div class="chat_box_container">
-        <div class="chat_box"></div>
+        <div class="chat_box chat_box_1"></div>
       </div>
       <div class="typing_area">
         <form class="row input_form_wrapper" action="index.html" method="post">
@@ -227,8 +227,15 @@
             hour: 'numeric',
             minute: 'numeric',
             second: 'numeric',
-      });
+    });
+    var group_current_index = 1;
+    var total_group = 1;
     var current_time = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+    document.querySelector('.commit_button').addEventListener('click', () => {
+      let group_name = document.querySelector('.input_group_name').value;
+      let group_description = document.querySelector('.input_group_description').value;
+      socket.emit('add_group',{'name': group_name, 'description': group_description});
+    });
     document.querySelector('.input_form_wrapper').addEventListener('submit', (e) => {
       e.preventDefault();
       let colorpicker_current_color = document.getElementById("change_background_color").value;
@@ -238,25 +245,28 @@
           message_p_color = "black";
       }else{
           message_p_color = "white";
-      }
+      }      
       message = document.querySelector('.input_chat').value;
       document.querySelector('.input_chat').value = "";
       var background_color = document.getElementById("change_background_color").value;
-      document.querySelector('.chat_box').insertAdjacentHTML('beforeend', `<div class="message m_sent"><div class="content" ` + `style="background: ${colorpicker_current_color};">` + `<p style="color: ${message_p_color};">` + `${message}</p><span class="message_time_sent">${current_time}</span></div></div>`);
-      socket.emit('message_sent', message);
+      console.log(document.querySelector('.chat_box_'+group_current_index.toString()));
+      document.querySelector('.chat_box_'+group_current_index.toString()).insertAdjacentHTML('beforeend', `<div class="message m_sent"><div class="content" ` + `style="background: ${colorpicker_current_color};">` + `<p style="color: ${message_p_color};">` + `${message}</p><span class="message_time_sent">${current_time}</span></div></div>`);
+      socket.emit('message_sent', {'content': message, 'room': group_current_index});
       document.querySelector('.chat_box').scrollTo(0,document.querySelector('.chat_box').scrollHeight);
     })
+    
     socket.on('join_chat', (message) => {
-      document.querySelector('.chat_box').insertAdjacentHTML('beforeend', `<p style="text-align:center;">${message}</p>`);
+      // document.querySelector('.chat_box').insertAdjacentHTML('beforeend', `<p style="text-align:center;">${message}</p>`);
     })
     socket.on('user-chat', (message) => {     
-      document.querySelector('.chat_box').insertAdjacentHTML('beforeend', `<div class="message m_received"><div class="chat_user_img_wrapper"><img src="default_profile_image.jpg" alt="" class="chat_user_img"></div><div class="content"><p>${message}</p><span class="message_time_received">${current_time}</span></div></div>`);
-      document.querySelector('.chat_box').insertAdjacentHTML('beforeend', `<audio class="new_message_noti" controls autoplay style="display: none;"><source src="new_message_noti.mp3"></audio>`);
+      console.log(message['room']);
+      document.querySelector('.chat_box_'+message['room'].toString()).insertAdjacentHTML('beforeend', `<div class="message m_received"><div class="chat_user_img_wrapper"><img src="default_profile_image.jpg" alt="" class="chat_user_img"></div><div class="content"><p>`+message['content']+`</p><span class="message_time_received">${current_time}</span></div></div>`);
+      document.querySelector('.chat_box_'+group_current_index.toString()).insertAdjacentHTML('beforeend', `<audio class="new_message_noti" controls autoplay style="display: none;"><source src="new_message_noti.mp3"></audio>`);
       document.querySelector('.new_message_noti').play();
-      document.querySelector('.chat_box').scrollTo(0,document.querySelector('.chat_box').scrollHeight);
+      document.querySelector('.chat_box_'+group_current_index.toString()).scrollTo(0,document.querySelector('.chat_box').scrollHeight);
     })
     socket.on('user-disconnect', (message) => {
-      document.querySelector('.chat_box').insertAdjacentHTML('beforeend', `<p style="text-align: center;">${message}</p>`)
+      // document.querySelector('.chat_box').insertAdjacentHTML('beforeend', `<p style="text-align: center;">${message}</p>`)
     })
     let colorpicker = document.getElementById("change_background_color");
 
