@@ -104,6 +104,7 @@ window.onload=function () {
         return false;
       };
   };
+  //logic to make linear-gradient background
   var change_box_color = document.getElementById("change_box_color");
   var change_box_color1 = document.getElementById("change_box_color1");
   change_box_color.addEventListener("input", function(){
@@ -111,5 +112,81 @@ window.onload=function () {
   })
   change_box_color1.addEventListener("input", function(){
     document.getElementsByClassName("chat_box")[0].style.background = `linear-gradient(to right, ${change_box_color.value},${change_box_color1.value})`;
+  })
+  //help to show group name when hover on group logo
+  function hover_show_items(){
+    var group_name_elms = document.querySelectorAll(".group_name");
+    var group_logo_elms = document.querySelectorAll(".group_logo");
+    group_logo_elms.forEach((item, i) => {
+      group_logo_elms[i].addEventListener("mouseover", function(){
+        group_name_elms[i].style.opacity = "1"
+      })
+      group_logo_elms[i].addEventListener("mouseout", function(){
+        group_name_elms[i].style.opacity = "0"
+      })
+    })
+    var chat_box_elms = document.querySelectorAll(".chat_box");
+    var logo_background = document.querySelectorAll(".group_list");
+    group_logo_elms.forEach((item, i) => {
+      group_logo_elms[i].addEventListener("click", function(){
+        logo_background[i].style.background = "#7747b6";
+        chat_box_elms[i].style.display = "block"; 
+        logo_background.forEach((item, j) => {
+          if (i != j){
+            logo_background[j].style.background = "none";
+            chat_box_elms[j].style.display = "none"; 
+          }
+        })
+      })
+    })
+  }
+  hover_show_items()
+  //Update logo_hover and create group
+  var add_group = document.querySelector("#add_group_button");
+  var add_group_box = document.querySelector(".group_dialog");
+  var error_notification = document.querySelector(".add_group_error");
+  var input_group_name = document.querySelector(".input_group_name");
+  var input_group_description = document.querySelector(".input_group_description");
+  var commit_button = document.querySelector(".commit_button>button");
+  var camera_button = document.querySelector(".camera_button");
+  var image_upload = document.querySelector(".image_upload");
+  var image_review = document.querySelector(".show_image *");
+  add_group.addEventListener("click", function(){
+    add_group_box.style.display = "block";
+  })
+  document.querySelector(".exit_creategroup").addEventListener("click", function(){
+    add_group_box.style.display = "none"
+    input_group_name.value = ""
+    input_group_description.value = ""
+    error_notification.textContent= ""
+  })
+  commit_button.addEventListener("click", function(){
+    if ((input_group_name.value.length > 15) || (input_group_description.value > 15)){
+      error_notification.textContent = "Invalid! No more than 15 characters"
+      console.log("error")
+    }
+    else{
+      var image_commit = document.querySelector(".show_image *").getAttribute('src');
+      document.querySelector(".group_collections").insertAdjacentHTML("beforeend", `<div class="group_list"><div><img src="${image_commit}" alt="" class="group_logo"><img src="https://img.icons8.com/material-outlined/24/000000/filled-circle--v2.png" class="online_status_2" style="width: 15px; height: 15px;"><span class="group_name">${input_group_name.value}</span></div></div>`)
+      document.querySelector(".chat_box_container").insertAdjacentHTML("beforeend", `<div class="chat_box"></div>`)
+      error_notification.textContent= ""
+      input_group_name.value = ""
+      input_group_description.value = ""
+      add_group_box.style.display = "none"
+      hover_show_items()
+    }
+  })
+  function Openimagefile(){
+    image_upload.click();
+  }
+  image_upload.addEventListener("change", function(){
+    var image_list = this.files[0]
+    if (image_list){
+      var reader = new FileReader()
+      reader.onload = function(){
+        image_review.src = reader.result
+      }
+      reader.readAsDataURL(image_list)
+    }
   })
 }
