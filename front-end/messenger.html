@@ -78,36 +78,51 @@
   </section>
   <section class="body row">
     <div class="side_group_icon col-5">
-      <div class="group_list row">
-        <img src="group_logo.jpg" alt="" id="group_logo_1">
-        <img src="https://img.icons8.com/material-outlined/24/000000/filled-circle--v2.png" class="online_status_2" style="width: 15px; height: 15px;">
-        <span class="group_name_1">Group information 1</span>
+      <div class="group_collections">
+        <div class="group_list">
+          <div>
+            <img src="group_logo.jpg" alt="" class="group_logo">
+            <img src="https://img.icons8.com/material-outlined/24/000000/filled-circle--v2.png" class="online_status_2" style="width: 15px; height: 15px;">
+            <div>
+              <span class="group_name">Group information 1</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="group_list row">
-        <img src="group2_logo.jpg" alt="" id="group_logo_2">
-        <img src="https://img.icons8.com/material-outlined/24/000000/filled-circle--v2.png" class="online_status_2" style="width: 15px; height: 15px;">
-        <span class="group_name_2">Group information 2</span>
-      </div>
-      <div class="group_list row">
-        <img src="group3_logo.jpg" alt="" id="group_logo_3">
-        <img src="https://img.icons8.com/material-outlined/24/000000/filled-circle--v2.png" class="online_status_2" style="width: 15px; height: 15px;">
-        <span class="group_name_3">Group information 3</span>
-      </div>
-      <img src="" alt=""><br>
-      <img src="" alt=""><br>
-      <img src="" alt=""><br>
-      <img src="" alt=""><br>
-      <img src="" alt=""><br>
-      <img src="" alt=""><br>
-      <a href="#">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+      
+      
+      <!-- <a href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-plus" viewBox="0 0 16 16">
           <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
         </svg>
-      </a>
+      </a> -->
+      <div class="add_group">
+        <i class="fas fa-plus" id="add_group_button"></i>
+        <div class="group_dialog">
+          <div class="group_dialog_row1">
+            <div class="show_image">
+              <img src="group_logo.jpg" alt="" style="width: 160px; height:160px; object-fit: cover;">
+            </div>
+            <button class="camera_button" onclick="Openimagefile()">
+              <i class="bi bi-camera"></i>  
+              <input type="file" accept="image/*" class="image_upload">          
+            </button>
+            <button class="exit_creategroup"><i class="fas fa-sign-out-alt"></i></button>
+          </div>
+          <input type="text" class="input_group_name" placeholder="Enter your group name">
+          <input type="text" class="input_group_description" placeholder="Enter short description for your group">
+          <div class="commit_button">
+            <span class="add_group_error"></span>
+            <button>Create a new group</button>
+          </div>  
+        </div>
+      </div>
+
+
     </div>
     <div class="chatting_area">
-      <div class="chat_box">
-        
+      <div class="chat_box_container">
+        <div class="chat_box"></div>
       </div>
       <div class="typing_area">
         <form class="row input_form_wrapper" action="index.html" method="post">
@@ -179,6 +194,21 @@
           <span id="users">Users</span>
         </div>
       </div>
+      <hr>
+      <div class="detail5">
+        <div>Channels</div>
+        <ul>
+          <li>
+            <button>test function 1</button>
+          </li>
+          <li>
+            <button>test function 2</button>
+          </li>
+          <li>
+            <button>test function 3</button>
+          </li>
+        </ul>
+      </div>
     </div>
   </section>
   <div class="change_logic">
@@ -197,7 +227,7 @@
             hour: 'numeric',
             minute: 'numeric',
             second: 'numeric',
-    });
+      });
     var current_time = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
     document.querySelector('.input_form_wrapper').addEventListener('submit', (e) => {
       e.preventDefault();
@@ -231,8 +261,8 @@
     let colorpicker = document.getElementById("change_background_color");
 
     colorpicker.addEventListener("input", function(){
-      hex = colorpicker.value;        
-      socket.emit('message_sender_background', hex);
+        hex = colorpicker.value;        
+        socket.emit('message_sender_background', hex);
     });
     socket.on('change_sender_chat_background', data => {
       let background_message_sent = document.querySelectorAll("div.m_sent>.content");
