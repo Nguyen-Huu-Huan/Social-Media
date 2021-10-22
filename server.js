@@ -24,13 +24,18 @@ mongo_db.on("error", console.error.bind(console, "connection failure: "));
 mongo_db.once("open", function(){
     console.log('database connection established');
 })
+const messageColorSettingSubSchema = new mongoose.Schema({
+    roomID: {type: Number, default: 1},
+    color: {type: String, default: "#fff000"},
+})
 const userSchema = new mongoose.Schema({
     email: {type: String, require: true, unique: true, dropDups: true},
     password: {type: String, require: true},
     loginAt: {type: Date, default: Date.now},
     new_user_status: {type: Boolean, default: true},
+    message_color_setting: [messageColorSettingSubSchema],
     user: {type: String, default: "guest"}, 
-    post: {type: Array, default: []}
+    post: {type: Array, default: []},
 })
 const messageSchema = new mongoose.Schema({
     message_id: {type: Number, default: 2539},
@@ -49,10 +54,14 @@ app.use(express.urlencoded({ extended: false }));
 io.on('connection', socket => {
     socket.on('message_sent', data => {
         let new_message = new message({
-            content: data           
+            content: data['content']
         });
         new_message.save();
+        console.log(data['room']);
         socket.broadcast.emit('user-chat', data);
+    })
+    socket.on('add_group', data => {
+        
     })
     socket.on('message_sender_background', data => {
         socket.emit('change_sender_chat_background', data);
