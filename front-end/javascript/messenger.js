@@ -129,6 +129,7 @@ window.onload=function () {
     var logo_background = document.querySelectorAll(".group_list");
     group_logo_elms.forEach((item, i) => {
       group_logo_elms[i].addEventListener("click", function(){
+        group_current_index = i+1;
         logo_background[i].style.background = "#7747b6";
         chat_box_elms[i].style.display = "block"; 
         logo_background.forEach((item, j) => {
@@ -168,7 +169,8 @@ window.onload=function () {
     else{
       var image_commit = document.querySelector(".show_image *").getAttribute('src');
       document.querySelector(".group_collections").insertAdjacentHTML("beforeend", `<div class="group_list"><div><img src="${image_commit}" alt="" class="group_logo"><img src="https://img.icons8.com/material-outlined/24/000000/filled-circle--v2.png" class="online_status_2" style="width: 15px; height: 15px;"><span class="group_name">${input_group_name.value}</span></div></div>`)
-      document.querySelector(".chat_box_container").insertAdjacentHTML("beforeend", `<div class="chat_box"></div>`)
+      var new_group_index = document.querySelectorAll('.group_list').length;
+      document.querySelector(".chat_box_container").insertAdjacentHTML("beforeend", `<div class="chat_box`+` chat_box_${new_group_index}"></div>`)
       error_notification.textContent= ""
       input_group_name.value = ""
       input_group_description.value = ""
