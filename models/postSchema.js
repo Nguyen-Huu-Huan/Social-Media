@@ -10,3 +10,4 @@ const postSchema = new mongoose.Schema({
     post_date: {type: Date},
     post_type: {type: String}
 })
+module.exports = mongoose.models['Posts'] || mongoose.model('Posts', postSchema);

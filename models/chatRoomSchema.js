@@ -8,3 +8,4 @@ const chatRoomSchema = new mongoose.Schema({
     room_name: {type: String},
     message_list: {type: Array}
 })
+module.exports = mongoose.models['Chat Room'] || mongoose.model('Chat Room', chatRoomSchema);

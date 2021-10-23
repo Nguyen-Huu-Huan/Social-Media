@@ -1,12 +1,21 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const http = require('http');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 const socketio = require('socket.io');
-const mongoose = require('mongoose');
-// const userModel = require("./models");
 const bodyParserTest = require("body-parser");
-// const { schema } = require('./models');
 const nodemailer = require('nodemailer');
+const mongoose = require('mongoose');
+
+// List of Collections
+const chatRoomModel = require("./models/chatRoomSchema");
+const courseDataModel = require("./models/courseDataSchema");
+const messageModel = require("./models/messageSchema");
+const postModel = require("./models/postSchema");
+const userModel = require("./models/userSchema");
+
 
 var transport = nodemailer.createTransport({
     service: 'Gmail',
@@ -18,34 +27,13 @@ var transport = nodemailer.createTransport({
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
-mongoose.connect('mongodb+srv://huan:buildingitsystem@cluster0.da9it.mongodb.net/user-info?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(process.env.MONGO_LINK, {useNewUrlParser: true, useUnifiedTopology: true});
 const mongo_db = mongoose.connection;
 mongo_db.on("error", console.error.bind(console, "connection failure: "));
 mongo_db.once("open", function(){
     console.log('database connection established');
 })
-const messageColorSettingSubSchema = new mongoose.Schema({
-    roomID: {type: Number, default: 1},
-    color: {type: String, default: "#fff000"},
-})
-const userSchema = new mongoose.Schema({
-    email: {type: String, require: true, unique: true, dropDups: true},
-    password: {type: String, require: true},
-    loginAt: {type: Date, default: Date.now},
-    new_user_status: {type: Boolean, default: true},
-    message_color_setting: [messageColorSettingSubSchema],
-    user: {type: String, default: "guest"}, 
-    post: {type: Array, default: []},
-})
-const messageSchema = new mongoose.Schema({
-    message_id: {type: Number, default: 2539},
-    content: {type: String, require: true},
-    sender: {type: String, default: "guess"},
-    sendAt: {type: Date, default: Date.now},
-})
 
-const user_account = mongoose.models['users'] || mongoose.model('users', userSchema);
-const message = mongoose.models['message'] || mongoose.model('message', messageSchema);
 app.use(express.static(path.join(__dirname, 'front-end')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -53,7 +41,7 @@ app.use(express.urlencoded({ extended: false }));
 
 io.on('connection', socket => {
     socket.on('message_sent', data => {
-        let new_message = new message({
+        let new_message = new messageModel({
             content: data['content']
         });
         new_message.save();
@@ -70,31 +58,53 @@ io.on('connection', socket => {
     socket.on('disconnect', () => {
         socket.broadcast.emit('user-disconnect', `User ${socket.id} has left the room chat`);
     })
-    socket.on('verify_email', receiver => {
+    socket.on('verify_email', async receiver => {
+        const password_encrypt = await bcrypt.hash(receiver['password'], 10);
+        console.log(receiver['password']);
         transport.sendMail({
             from: "rmit.itstudent@gmail.com",
             to: receiver['email_address'],
             subject: "Password Generator",
             html: `<h1>Want to join us?</h1><p>Login with this password: ${receiver['password']}</p>`
         })
-        let new_account = new user_account({
+        let new_account = new userModel({
             email: receiver['email_address'],
-            password: receiver['password']
+            password: password_encrypt
         });
         new_account.save();
+
     })
     socket.on('login_auth', (login_info) => {
-        user_account.find({email: login_info['email'], password: login_info['password']}, function(error, data){
+        const account = userModel.findOne({ email: login_info['email'] });
+        console.log(login_info['email']);
+        userModel.find({email: login_info['email']}, async function(error, data){
             if (data.length===0){
-                socket.emit('login_failed', '')
+                console.log('login failed');
+                socket.emit('login_failed', ''); 
             }else{
+                test = await bcrypt.compare(login_info['password'], data[0]['password']);
                 console.log('login success');
+
+                // const login_token = jwt.sign(
+                //     { user_id: data[0]['_id'], email },
+                //     process.env.TOKEN_KEY,
+                //     {expiresIn: "3h"}
+                // );
+                //Save token
+                // console.log(userModel);
+                // data[0]['token'] = token
                 io.emit('join_chat', `user ${login_info['email'].split('@')[0]}  has joined the chat`)
             }
         })
+        // // console.log(account.password);
+        // if (!account || !bcrypt.compare(login_info['password'], account.password)) {
+        //     console.log('login failed');
+        //     socket.emit('login_failed', '');
+        // } else {
+        // }
     })
     // socket.on('join_chat', (user_info){
-    //     user_account.find({email: login_info['room'], password: login_info['user_id']}, function(error, data){
+    //     userModel.find({email: login_info['room'], password: login_info['user_id']}, function(error, data){
     //         if (data.length===0){
     //             socket.emit('login_failed', '')
     //         }else{
@@ -104,7 +114,7 @@ io.on('connection', socket => {
     //     })
     // })
     // socket.on('logout', (login_info) => {
-    //     user_account.find({email: login_info['email']}, function(error, data){
+    //     userModel.find({email: login_info['email']}, function(error, data){
     //         console.log('login success');
     //         io.emit('leave_chat', `user ${login_info['email'].split('@')[0]}  has left the chat`)
     //     }
@@ -112,5 +122,5 @@ io.on('connection', socket => {
     // })
     
 })
-const PORT = process.env.PORT||3000;
+const PORT = process.env.DEFAULT_PORT;
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
