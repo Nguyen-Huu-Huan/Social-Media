@@ -122,5 +122,5 @@ io.on('connection', socket => {
     // })
     
 })
-const PORT = process.env.DEFAULT_PORT;
+const PORT = process.env.DEFAULT_PORT||3000;
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
