@@ -168,13 +168,14 @@ button{
   position: relative;
   display: flex;
   flex-direction: column;
-  background: none;
-  align-items: center;
+  background-color: #85FFBD;
+  background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
   border: 1px solid #D3D3D3;
   height: 670px;
   overflow-y: scroll;
   overflow-x: visible;
   box-sizing: border-box;
+  padding-left: 5px;
 }
 .side_group_icon img{
   width: 40px;
@@ -192,8 +193,9 @@ button{
   flex-direction: row;
   margin-top: 20px;
   box-sizing: border-box;
+  border-radius: 15px;
 }
-.group_name{
+/* .group_name{
   position: absolute;
   width: 200px;
   margin: 0px 0 20px 0px;
@@ -203,7 +205,7 @@ button{
   box-shadow: 0 0 20px #ccc;
   z-index: 99;
   opacity: 0;
-}
+} */
 .add_group{
   width: 40px;
   height: 40px;
@@ -233,30 +235,33 @@ button{
   display: flex;
   flex-direction: row;
 } */
-/* .group_name{
+.group_list:last-child{
   position: relative;
+}
+.group_name{
+  position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
   color: red;
-  width: 200;
+  margin-left: 60px;
+  bottom: 3px;
+  height: 40px;
+  width: 200px;
   z-index: 50;
-  margin: 10px 0 0 50px;
   transition: 0.3s ease-in-out;
-  color: white;
-  background: black;
-  border-radius: 15px 15px 15px 15px;
+  font-weight: bold;
+  color: black;
+  background: none;
   opacity: 0;
-  background: #4B0082;
-  box-shadow: 0 0 20px #ccc;
-} */
+}
 .online_status_2{
   position: absolute;
   background: #0BDA51;
   border-radius: 50%;
   z-index: 10;
-  right: 0px;
+  margin-left: -15px;
 }
 .group_details{
   background: white;
