@@ -20,6 +20,19 @@ function OpenChangeBox() {
   document.querySelector("body").querySelectorAll("a").forEach((button) => { button.style.pointerEvents = "none"; })
   document.querySelector("body").querySelectorAll("div:not(div.change_logic, div.change_logic *)").forEach((div) => { div.style.opacity = "0.5" })
 }
+function CurrentChatBox(){
+  var chat_box_collections = document.querySelectorAll(".chat_box");
+  chat_box_collections.forEach((item, i) => {
+    if (item.style.display == "block"){
+      return item;
+    }
+  })
+}
+var image_upload = document.querySelector(".image_upload");
+function Openimagefile(){
+  image_upload.click();
+}
+
 function CloseChangeBox(){
   var nickname = document.querySelector('.change_input');
   var error = document.querySelector('.nickname_error');
@@ -61,7 +74,6 @@ window.onload=function () {
       document.querySelector("body").querySelectorAll("div:not(div.change_logic,div.change_logic *)").forEach((div) => { div.style.opacity = "1" })
     }
   }
-
   details_toggle.addEventListener("click", function toggle_details() {
     details_toggle_click_count+=1;
     if (details_toggle_click_count%2==1){
@@ -87,7 +99,7 @@ window.onload=function () {
       drop_menu.style.opacity = 0;
       counter = 0;
     }
-  };
+  }
   function check_outside_click(event, elements) {
       elements = document.querySelectorAll('.bi-brush, .color_menu *, color_menu');
       var len = elements.length;
@@ -102,8 +114,8 @@ window.onload=function () {
       }
       else {
         return false;
-      };
-  };
+      }
+  }
   //logic to make linear-gradient background
   var change_box_color = document.getElementById("change_box_color");
   var change_box_color1 = document.getElementById("change_box_color1");
@@ -117,20 +129,26 @@ window.onload=function () {
   function hover_show_items(){
     var group_name_elms = document.querySelectorAll(".group_name");
     var group_logo_elms = document.querySelectorAll(".group_logo");
+    var side_group_icon = document.querySelector(".side_group_icon");
     group_logo_elms.forEach((item, i) => {
       group_logo_elms[i].addEventListener("mouseover", function(){
         group_name_elms[i].style.opacity = "1"
+        side_group_icon.style = "flex-basis: 20%"
+        group_details.style = "flex-basis: 20%"
       })
       group_logo_elms[i].addEventListener("mouseout", function(){
         group_name_elms[i].style.opacity = "0"
+        side_group_icon.style = "flex-basis: 5%"
+        group_details.style = "flex-basis: 30%"
       })
+
     })
     var chat_box_elms = document.querySelectorAll(".chat_box");
     var logo_background = document.querySelectorAll(".group_list");
     group_logo_elms.forEach((item, i) => {
       group_logo_elms[i].addEventListener("click", function(){
         group_current_index = i+1;
-        logo_background[i].style.background = "#7747b6";
+        logo_background[i].style.background = "linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)"
         chat_box_elms[i].style.display = "block"; 
         logo_background.forEach((item, j) => {
           if (i != j){
@@ -142,15 +160,14 @@ window.onload=function () {
     })
   }
   hover_show_items()
-  //Update logo_hover and create group
+  
+  //create group function when click on "+" button
   var add_group = document.querySelector("#add_group_button");
   var add_group_box = document.querySelector(".group_dialog");
   var error_notification = document.querySelector(".add_group_error");
   var input_group_name = document.querySelector(".input_group_name");
   var input_group_description = document.querySelector(".input_group_description");
   var commit_button = document.querySelector(".commit_button>button");
-  var camera_button = document.querySelector(".camera_button");
-  var image_upload = document.querySelector(".image_upload");
   var image_review = document.querySelector(".show_image *");
   add_group.addEventListener("click", function(){
     add_group_box.style.display = "block";
@@ -178,9 +195,6 @@ window.onload=function () {
       hover_show_items()
     }
   })
-  function Openimagefile(){
-    image_upload.click();
-  }
   image_upload.addEventListener("change", function(){
     var image_list = this.files[0]
     if (image_list){
@@ -192,3 +206,4 @@ window.onload=function () {
     }
   })
 }
+
