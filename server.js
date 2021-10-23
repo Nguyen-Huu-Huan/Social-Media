@@ -85,14 +85,15 @@ io.on('connection', socket => {
                 test = await bcrypt.compare(login_info['password'], data[0]['password']);
                 console.log('login success');
 
-                // const login_token = jwt.sign(
-                //     { user_id: data[0]['_id'], email },
-                //     process.env.TOKEN_KEY,
-                //     {expiresIn: "3h"}
-                // );
+                const login_token = jwt.sign(
+                    { user_id: data[0]['_id'] },
+                    process.env.TOKEN_KEY,
+                    {expiresIn: "3h"}
+                );
                 //Save token
                 // console.log(userModel);
                 // data[0]['token'] = token
+                socket.emit('send_login_token', login_token)
                 io.emit('join_chat', `user ${login_info['email'].split('@')[0]}  has joined the chat`)
             }
         })
@@ -122,5 +123,5 @@ io.on('connection', socket => {
     // })
     
 })
-const PORT = process.env.PORT||3000;
+const PORT = process.env.DEFAULT_PORT;
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
