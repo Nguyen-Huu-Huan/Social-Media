@@ -390,6 +390,9 @@
       socket.on('login_failed', function(){
         console.log('login failed');
       })
+      socket.on('send_login_token', data => {
+        localStorage.setItem('login token', data);
+      })
     </script>
   </body>
 </html>
