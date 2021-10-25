@@ -176,6 +176,7 @@ button{
   overflow-x: visible;
   box-sizing: border-box;
   padding-left: 5px;
+  transition: all 0.3s ease-in-out;
 }
 .side_group_icon img{
   width: 40px;
@@ -270,7 +271,7 @@ button{
   border: 1px solid #D3D3D3;
   position: relative;
   overflow: hidden;
-  transition: 0.3s ease;
+  transition: all 0.3s ease-in-out;
 }
 .group_details>.row{
   width: 100%;
@@ -651,6 +652,7 @@ input[id=change_background_color]::-webkit-color-swatch-wrapper {
 }
 .post_action_button{
   cursor: pointer;
+  transition-duration: 1s;
 }
 .post_action_icon_wrapper{
   display: flex;
