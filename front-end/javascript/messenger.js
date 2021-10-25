@@ -24,7 +24,8 @@ function CurrentChatBox(){
   var chat_box_collections = document.querySelectorAll(".chat_box");
   chat_box_collections.forEach((item, i) => {
     if (item.style.display == "block"){
-      return item;
+      save_chat_box = item
+      return save_chat_box
     }
   })
 }
@@ -60,8 +61,10 @@ window.onload=function () {
       post_action_click_count[i]+=1;
       if (post_action_click_count[i]%2==0){
         upload_function_div[i].style="display:none";
+        post_action_button[0].style.transform = "rotate(0deg)"
       }else{
         upload_function_div[i].style="display:block";
+        post_action_button[0].style.transform = "rotate(45deg)"
       }
     })
   });
@@ -117,14 +120,16 @@ window.onload=function () {
       }
   }
   //logic to make linear-gradient background
-  var change_box_color = document.getElementById("change_box_color");
-  var change_box_color1 = document.getElementById("change_box_color1");
-  change_box_color.addEventListener("input", function(){
-    document.getElementsByClassName("chat_box")[0].style.background = `linear-gradient(to right, ${change_box_color.value},${change_box_color1.value})`;
-  })
-  change_box_color1.addEventListener("input", function(){
-    document.getElementsByClassName("chat_box")[0].style.background = `linear-gradient(to right, ${change_box_color.value},${change_box_color1.value})`;
-  })
+  function active_change_color(elemt){
+    var change_box_color = document.getElementById("change_box_color");
+    var change_box_color1 = document.getElementById("change_box_color1");
+    change_box_color.addEventListener("input", function(){
+      elemt.style.background = `linear-gradient(to right, ${change_box_color.value},${change_box_color1.value})`;
+    })
+    change_box_color1.addEventListener("input", function(){
+      elemt.style.background = `linear-gradient(to right, ${change_box_color.value},${change_box_color1.value})`;
+    })
+  }
   //help to show group name when hover on group logo
   function hover_show_items(){
     var group_name_elms = document.querySelectorAll(".group_name");
@@ -150,6 +155,7 @@ window.onload=function () {
         group_current_index = i+1;
         logo_background[i].style.background = "linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)"
         chat_box_elms[i].style.display = "block"; 
+        active_change_color(chat_box_elms[i])
         logo_background.forEach((item, j) => {
           if (i != j){
             logo_background[j].style.background = "none";
