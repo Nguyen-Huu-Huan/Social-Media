@@ -20,8 +20,8 @@ const userModel = require("./models/userSchema");
 var transport = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-      user: 'rmit.itstudent@gmail.com',
-      pass: 'buildingitsystem'
+      user: process.env.EMAIL_ACC,
+      pass: process.env.EMAIL_PASS
     }
 })
 const app = express();
@@ -123,5 +123,5 @@ io.on('connection', socket => {
     // })
     
 })
-const PORT = process.env.PORT;
+const PORT = process.env.DEFAULT_PORT;
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
