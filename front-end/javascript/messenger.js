@@ -184,23 +184,7 @@ window.onload=function () {
     input_group_description.value = ""
     error_notification.textContent= ""
   })
-  commit_button.addEventListener("click", function(){
-    if ((input_group_name.value.length > 15) || (input_group_description.value > 15)){
-      error_notification.textContent = "Invalid! No more than 15 characters"
-      console.log("error")
-    }
-    else{
-      var image_commit = document.querySelector(".show_image *").getAttribute('src');
-      document.querySelector(".group_collections").insertAdjacentHTML("beforeend", `<div class="group_list"><div><img src="${image_commit}" alt="" class="group_logo"><img src="https://img.icons8.com/material-outlined/24/000000/filled-circle--v2.png" class="online_status_2" style="width: 15px; height: 15px;"><span class="group_name">${input_group_name.value}</span></div></div>`)
-      var new_group_index = document.querySelectorAll('.group_list').length;
-      document.querySelector(".chat_box_container").insertAdjacentHTML("beforeend", `<div class="chat_box`+` chat_box_${new_group_index}"></div>`)
-      error_notification.textContent= ""
-      input_group_name.value = ""
-      input_group_description.value = ""
-      add_group_box.style.display = "none"
-      hover_show_items()
-    }
-  })
+  
   image_upload.addEventListener("change", function(){
     var image_list = this.files[0]
     if (image_list){
