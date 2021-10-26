@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema({
     message_color_setting: [messageColorSettingSubSchema],
     user: {type: String, default: "guest"}, 
     post: {type: Array, default: []},
+    room_list: {type: Array, default: []},
     token: {type: String, default: null}
 })
 module.exports = mongoose.models['User Info'] || mongoose.model('User Info', userSchema);
