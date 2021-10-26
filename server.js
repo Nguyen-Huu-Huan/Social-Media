@@ -40,6 +40,45 @@ app.use(express.urlencoded({ extended: false }));
 
 
 io.on('connection', socket => {
+    socket.on('localStorage', async data => {
+        verifyID = await jwt.verify(data, process.env.TOKEN_KEY)['user_id'];
+        var roomArray = new Array();
+        userModel.findOne({_id: mongoose.Types.ObjectId(verifyID)}, function(error, userData){
+            if (userData.length===0){
+                console.log('unable to find user id');
+            }else{
+                userData['room_list'].forEach( async (roomID, index) => {
+                    var roomInfo = {};
+                    chatRoomModel.findOne({_id: mongoose.Types.ObjectId(roomID)}, function(err, roomData){
+                        if (roomData.length===0){
+                            console.log('no room found');
+                        }else{
+                            roomInfo = roomData;
+                        }
+                    })
+                    roomArray.push(roomInfo);
+                })
+                socket.emit('loggedin_process', roomArray);
+            }
+        })
+    })
+
+    socket.on('create_new_room', data => {
+        let new_room = new chatRoomModel({
+            room_id: 15,
+            people: data['member'],
+            room_name: data['name'],
+            message_list: []
+        })
+        new_room.save()
+        userModel.updateOne({_id: mongoose.Types.ObjectId(jwt.verify(data['creator'], process.env.TOKEN_KEY)['user_id'])}, {$push: {room_list: new_room['_id']}}, function(err, success){
+            if (err){
+                console.log('update room list unsuccessful');
+            }else{
+                console.log('room list updated');
+            }
+        })
+    })
     socket.on('message_sent', data => {
         let new_message = new messageModel({
             content: data['content']
@@ -93,7 +132,7 @@ io.on('connection', socket => {
                 //Save token
                 // console.log(userModel);
                 // data[0]['token'] = token
-                socket.emit('send_login_token', login_token)
+                socket.emit('send_login_token', login_token);
                 io.emit('join_chat', `user ${login_info['email'].split('@')[0]}  has joined the chat`)
             }
         })
