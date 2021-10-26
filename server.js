@@ -129,9 +129,6 @@ io.on('connection', socket => {
                     process.env.TOKEN_KEY,
                     {expiresIn: "3h"}
                 );
-                //Save token
-                // console.log(userModel);
-                // data[0]['token'] = token
                 socket.emit('send_login_token', login_token);
                 io.emit('join_chat', `user ${login_info['email'].split('@')[0]}  has joined the chat`)
             }
