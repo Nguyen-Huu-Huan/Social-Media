@@ -214,6 +214,65 @@
   <script src="/socket.io/socket.io.js"></script>
   <script>
     const socket = io();
+    function hover_show_items(){
+    var group_name_elms = document.querySelectorAll(".group_name");
+    var group_logo_elms = document.querySelectorAll(".group_logo");
+    var side_group_icon = document.querySelector(".side_group_icon");
+    group_logo_elms.forEach((item, i) => {
+      group_logo_elms[i].addEventListener("mouseover", function(){
+        group_name_elms[i].style.opacity = "1"
+        side_group_icon.style = "flex-basis: 20%"
+        group_details.style = "flex-basis: 20%"
+      })
+      group_logo_elms[i].addEventListener("mouseout", function(){
+        group_name_elms[i].style.opacity = "0"
+        side_group_icon.style = "flex-basis: 5%"
+        group_details.style = "flex-basis: 30%"
+      })
+
+    })
+    var chat_box_elms = document.querySelectorAll(".chat_box");
+    var logo_background = document.querySelectorAll(".group_list");
+    group_logo_elms.forEach((item, i) => {
+      group_logo_elms[i].addEventListener("click", function(){
+        group_current_index = i+1;
+        logo_background[i].style.background = "linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)"
+        chat_box_elms[i].style.display = "block"; 
+        active_change_color(chat_box_elms[i])
+        logo_background.forEach((item, j) => {
+          if (i != j){
+            logo_background[j].style.background = "none";
+            chat_box_elms[j].style.display = "none"; 
+          }
+        })
+      })
+    })
+  }
+    var commit_button = document.querySelector(".commit_button>button");
+    var input_group_name = document.querySelector(".input_group_name");
+    var input_group_description = document.querySelector(".input_group_description");
+    var error_notification = document.querySelector(".add_group_error");
+    var add_group_box = document.querySelector(".group_dialog");
+    commit_button.addEventListener("click", function(){
+    if ((input_group_name.value.length > 15) || (input_group_description.value > 15)){
+      error_notification.textContent = "Invalid! No more than 15 characters"
+      console.log("error")
+    }
+    else{
+      var image_commit = document.querySelector(".show_image *").getAttribute('src');
+      document.querySelector(".group_collections").insertAdjacentHTML("beforeend", `<div class="group_list"><div><img src="${image_commit}" alt="" class="group_logo"><img src="https://img.icons8.com/material-outlined/24/000000/filled-circle--v2.png" class="online_status_2" style="width: 15px; height: 15px;"><span class="group_name">${input_group_name.value}</span></div></div>`)
+      var new_group_index = document.querySelectorAll('.group_list').length;
+      document.querySelector(".chat_box_container").insertAdjacentHTML("beforeend", `<div class="chat_box`+` chat_box_${new_group_index}"></div>`)
+      room_information = {'creator': localStorage.getItem('login token'),'name': input_group_name.value, 'description': input_group_description.value, 'member': ['s3912345', 's3500000']};
+      error_notification.textContent= ""
+      input_group_name.value = ""
+      input_group_description.value = ""
+      add_group_box.style.display = "none"
+      console.log(room_information);
+      socket.emit('create_new_room', room_information);
+      hover_show_items()
+    }
+  })
     var current_time = new Date().toLocaleString((window.navigator.userLanguage || window.navigator.language), {
             hour: 'numeric',
             minute: 'numeric',
@@ -278,7 +337,13 @@
         }
       });
     });
-    
+    socket.emit('localStorage', localStorage.getItem('login token'));
+    socket.on('loggedin_process', function(data){
+      data['room_list'].forEach(room => {
+        document.querySelector(".group_collections").insertAdjacentHTML("beforeend", `<div class="group_list"><div><img src="group_logo.jpg" alt="" class="group_logo"><img src="https://img.icons8.com/material-outlined/24/000000/filled-circle--v2.png" class="online_status_2" style="width: 15px; height: 15px;"><span class="group_name">${room}</span></div></div>`)
+
+      })
+    })
     
   </script>
 </body>
