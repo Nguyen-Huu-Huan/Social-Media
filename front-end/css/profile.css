@@ -255,7 +255,7 @@ body{
   width: 80%;
 }
 
-.new_message{
+.new_message, .new_notification{
   color: white;
   font-weight: bold;
   font-size: 1rem;
