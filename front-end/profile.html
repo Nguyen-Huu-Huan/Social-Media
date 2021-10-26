@@ -371,7 +371,9 @@
       document.querySelector('.notification_a').style.display = "none";
       document.querySelector('.menu_a').style.display = "none";
       const socket = io();
-      socket.emit('localStorage', localStorage.getItem('login token'));
+      if (localStorage.getItem('login token')){
+        socket.emit('localStorage', localStorage.getItem('login token'));
+      }
       document.querySelector(".rmit_email").addEventListener("input", function(e){
         if (!!RegExp('s3[5-9]{1}[0-9]{5}@rmit.edu.vn').exec(document.querySelector('.rmit_email').value)){
           console.log('hello world');
@@ -396,13 +398,11 @@
       })
       socket.on('send_login_token', data => {
         localStorage.setItem('login token', data);
-        socket.emit('login_success', data);
       })
       socket.on('loggedin_process', function(){
         document.querySelector('.message_a').style.display = "block";
         document.querySelector('.notification_a').style.display = "block";
         document.querySelector('.menu_a').style.display = "block";
-
       })
     </script>
   </body>
