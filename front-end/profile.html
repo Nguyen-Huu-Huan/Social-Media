@@ -367,9 +367,9 @@
     </section>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-      document.querySelectorAll('a.message_a *, .new_message').forEach(item => {item.style.display = "none"});
-      document.querySelectorAll('.notification_a *').forEach(item => {item.style.display = "none"});
-      document.querySelectorAll('.menu_a *').forEach(item => {item.style.display = "none"});
+      document.querySelector('.message_a').style.display = "none";
+      document.querySelector('.notification_a').style.display = "none";
+      document.querySelector('.menu_a').style.display = "none";
       const socket = io();
       socket.emit('localStorage', localStorage.getItem('login token'));
       document.querySelector(".rmit_email").addEventListener("input", function(e){
@@ -399,9 +399,9 @@
         socket.emit('login_success', data);
       })
       socket.on('loggedin_process', function(){
-        document.querySelectorAll('a.message_a *').forEach(item => {item.style.display = "block"});
-        document.querySelectorAll('.notification_a *').forEach(item => {item.style.display = "block"});
-        document.querySelectorAll('.menu_a *').forEach(item => {item.style.display = "block"});
+        document.querySelector('.message_a').style.display = "block";
+        document.querySelector('.notification_a').style.display = "block";
+        document.querySelector('.menu_a').style.display = "block";
 
       })
     </script>
