@@ -337,11 +337,13 @@
         }
       });
     });
-    socket.emit('localStorage', localStorage.getItem('login token'));
+    if (localStorage.getItem('login token')){
+        socket.emit('localStorage', localStorage.getItem('login token'));
+    }
     socket.on('loggedin_process', function(data){
-      data['room_list'].forEach(room => {
-        document.querySelector(".group_collections").insertAdjacentHTML("beforeend", `<div class="group_list"><div><img src="group_logo.jpg" alt="" class="group_logo"><img src="https://img.icons8.com/material-outlined/24/000000/filled-circle--v2.png" class="online_status_2" style="width: 15px; height: 15px;"><span class="group_name">${room}</span></div></div>`)
-
+      console.log(data);
+      data.forEach(room => {
+        document.querySelector(".group_collections").insertAdjacentHTML("beforeend", `<div class="group_list"><div><img src="group_logo.jpg" alt="" class="group_logo"><img src="https://img.icons8.com/material-outlined/24/000000/filled-circle--v2.png" class="online_status_2" style="width: 15px; height: 15px;"><span class="group_name">${room['room_name']}</span></div></div>`)
       })
     })
     
