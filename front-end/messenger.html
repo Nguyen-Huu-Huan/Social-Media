@@ -215,39 +215,43 @@
   <script>
     const socket = io();
     function hover_show_items(){
-    var group_name_elms = document.querySelectorAll(".group_name");
-    var group_logo_elms = document.querySelectorAll(".group_logo");
-    var side_group_icon = document.querySelector(".side_group_icon");
-    group_logo_elms.forEach((item, i) => {
-      group_logo_elms[i].addEventListener("mouseover", function(){
-        group_name_elms[i].style.opacity = "1"
-        side_group_icon.style = "flex-basis: 20%"
-        group_details.style = "flex-basis: 20%"
-      })
-      group_logo_elms[i].addEventListener("mouseout", function(){
-        group_name_elms[i].style.opacity = "0"
-        side_group_icon.style = "flex-basis: 5%"
-        group_details.style = "flex-basis: 30%"
-      })
+      var group_name_elms = document.querySelectorAll(".group_name");
+      var group_logo_elms = document.querySelectorAll(".group_logo");
+      var side_group_icon = document.querySelector(".side_group_icon");
+      var group_details = document.querySelector(".group_details");
+      group_logo_elms.forEach((item, i) => {
+        group_logo_elms[i].addEventListener("mouseover", function(){
+          group_name_elms[i].style.opacity = "1"
+          side_group_icon.style = "flex-basis: 20%"
+          group_details.style = "flex-basis: 20%"
+        })
+        group_logo_elms[i].addEventListener("mouseout", function(){
+          group_name_elms[i].style.opacity = "0"
+          side_group_icon.style = "flex-basis: 5%"
+          group_details.style = "flex-basis: 30%"
+        })
 
-    })
-    var chat_box_elms = document.querySelectorAll(".chat_box");
-    var logo_background = document.querySelectorAll(".group_list");
-    group_logo_elms.forEach((item, i) => {
-      group_logo_elms[i].addEventListener("click", function(){
-        group_current_index = i+1;
-        logo_background[i].style.background = "linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)"
-        chat_box_elms[i].style.display = "block"; 
-        active_change_color(chat_box_elms[i])
-        logo_background.forEach((item, j) => {
-          if (i != j){
-            logo_background[j].style.background = "none";
-            chat_box_elms[j].style.display = "none"; 
-          }
+      })
+      var chat_box_elms = document.querySelectorAll(".chat_box");
+      var logo_background = document.querySelectorAll(".group_list");
+      group_logo_elms.forEach((item, i) => {
+        group_logo_elms[i].addEventListener("click", function(){
+          group_current_index = group_list[i];
+          logo_background[i].style.background = "linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)"
+          chat_box_elms[i].style.display = "block"; 
+          active_change_color(chat_box_elms[i])
+          logo_background.forEach((item, j) => {
+            if (i != j){
+              logo_background[j].style.background = "none";
+              chat_box_elms[j].style.display = "none"; 
+            }
+          })
         })
       })
+    }
+    socket.on('create_new_room', data => {
+      document.querySelector(".chat_box_container").insertAdjacentHTML("beforeend", `<div class="chat_box`+` chat_box_${data['_id']}"></div>`)
     })
-  }
     var commit_button = document.querySelector(".commit_button>button");
     var input_group_name = document.querySelector(".input_group_name");
     var input_group_description = document.querySelector(".input_group_description");
@@ -262,7 +266,7 @@
       var image_commit = document.querySelector(".show_image *").getAttribute('src');
       document.querySelector(".group_collections").insertAdjacentHTML("beforeend", `<div class="group_list"><div><img src="${image_commit}" alt="" class="group_logo"><img src="https://img.icons8.com/material-outlined/24/000000/filled-circle--v2.png" class="online_status_2" style="width: 15px; height: 15px;"><span class="group_name">${input_group_name.value}</span></div></div>`)
       var new_group_index = document.querySelectorAll('.group_list').length;
-      document.querySelector(".chat_box_container").insertAdjacentHTML("beforeend", `<div class="chat_box`+` chat_box_${new_group_index}"></div>`)
+      
       room_information = {'creator': localStorage.getItem('login token'),'name': input_group_name.value, 'description': input_group_description.value, 'member': ['s3912345', 's3500000']};
       error_notification.textContent= ""
       input_group_name.value = ""
@@ -278,14 +282,11 @@
             minute: 'numeric',
             second: 'numeric',
     });
-    var group_current_index = 1;
+    var group_list = []
+    var group_current_index = group_list[0];
     var total_group = 1;
     var current_time = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
-    document.querySelector('.commit_button').addEventListener('click', () => {
-      let group_name = document.querySelector('.input_group_name').value;
-      let group_description = document.querySelector('.input_group_description').value;
-      socket.emit('add_group',{'name': group_name, 'description': group_description});
-    });
+    
     document.querySelector('.input_form_wrapper').addEventListener('submit', (e) => {
       e.preventDefault();
       let colorpicker_current_color = document.getElementById("change_background_color").value;
@@ -341,9 +342,12 @@
         socket.emit('localStorage', localStorage.getItem('login token'));
     }
     socket.on('loggedin_process', function(data){
-      console.log(data);
+      console.log(JSON.stringify(data, null, "  "));
       data.forEach(room => {
+        console.log(JSON.stringify(room['room_name'], null, "  "));
         document.querySelector(".group_collections").insertAdjacentHTML("beforeend", `<div class="group_list"><div><img src="group_logo.jpg" alt="" class="group_logo"><img src="https://img.icons8.com/material-outlined/24/000000/filled-circle--v2.png" class="online_status_2" style="width: 15px; height: 15px;"><span class="group_name">${room['room_name']}</span></div></div>`)
+        group_list.push(room['_id']);
+        hover_show_items();
       })
     })
     
