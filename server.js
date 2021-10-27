@@ -38,26 +38,28 @@ app.use(express.static(path.join(__dirname, 'front-end')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+var roomArray = new Array();
 
 io.on('connection', socket => {
     socket.on('localStorage', async data => {
         verifyID = await jwt.verify(data, process.env.TOKEN_KEY)['user_id'];
-        var roomArray = new Array();
         userModel.findOne({_id: mongoose.Types.ObjectId(verifyID)}, function(error, userData){
             if (userData.length===0){
                 console.log('unable to find user id');
             }else{
+                var roomInfo = {};
                 userData['room_list'].forEach( async (roomID, index) => {
-                    var roomInfo = {};
                     chatRoomModel.findOne({_id: mongoose.Types.ObjectId(roomID)}, function(err, roomData){
                         if (roomData.length===0){
                             console.log('no room found');
                         }else{
                             roomInfo = roomData;
+                            roomArray.push(roomInfo);
                         }
                     })
-                    roomArray.push(roomInfo);
+                    console.log(roomArray);
                 })
+                console.log(roomArray);
                 socket.emit('loggedin_process', roomArray);
             }
         })
@@ -78,6 +80,7 @@ io.on('connection', socket => {
                 console.log('room list updated');
             }
         })
+        socket.emit('new_chat_box', new_room);
     })
     socket.on('message_sent', data => {
         let new_message = new messageModel({
@@ -87,9 +90,7 @@ io.on('connection', socket => {
         console.log(data['room']);
         socket.broadcast.emit('user-chat', data);
     })
-    socket.on('add_group', data => {
-        
-    })
+    
     socket.on('message_sender_background', data => {
         socket.emit('change_sender_chat_background', data);
     })
