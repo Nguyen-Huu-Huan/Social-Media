@@ -152,7 +152,7 @@ window.onload=function () {
     var logo_background = document.querySelectorAll(".group_list");
     group_logo_elms.forEach((item, i) => {
       group_logo_elms[i].addEventListener("click", function(){
-        group_current_index = i+1;
+        group_current_index = group_list[i];
         logo_background[i].style.background = "linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)"
         chat_box_elms[i].style.display = "block"; 
         active_change_color(chat_box_elms[i])
