@@ -66,6 +66,7 @@ io.on('connection', socket => {
                             }
                         })
                     })
+                    console.log('test for socket');
                     socket.emit('loggedin_process_room', roomArray);
                 }
             }
