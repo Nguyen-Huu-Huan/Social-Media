@@ -251,6 +251,7 @@
       var logo_background = document.querySelectorAll(".group_list");
       group_logo_elms.forEach((item, i) => {
         group_logo_elms[i].addEventListener("click", function(){
+          console.log(group_list[i]);
           group_current_index = group_list[i];
           logo_background[i].style.background = "linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)"
           chat_box_elms[i].style.display = "block"; 
@@ -300,7 +301,8 @@
 
 
     //create new group in html and transfer data to socket.io
-    socket.on('create_new_room', data => {
+    socket.on('new_chat_box', data => {
+      console.log(data);
       document.querySelector(".chat_box_container").insertAdjacentHTML("beforeend", `<div class="chat_box`+` chat_box_${data['_id']}"></div>`)
     })
     var commit_button = document.querySelector(".commit_button>button");
@@ -335,7 +337,12 @@
             second: 'numeric',
     });
     var group_list = []
-    var group_current_index = group_list[0];
+    var group_current_index = 0;
+    try {
+      group_current_index = group_list[0]['_id'];
+    }catch(error){
+      console.log('error');
+    }
     var total_group = 1;
     var current_time = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
     
@@ -352,9 +359,10 @@
       message = document.querySelector('.input_chat').value;
       document.querySelector('.input_chat').value = "";
       var background_color = document.getElementById("change_background_color").value;
+      console.log(group_current_index);
       console.log(document.querySelector('.chat_box_'+group_current_index.toString()));
       document.querySelector('.chat_box_'+group_current_index.toString()).insertAdjacentHTML('beforeend', `<div class="message m_sent"><div class="content" ` + `style="background: ${colorpicker_current_color};">` + `<p style="color: ${message_p_color};">` + `${message}</p><span class="message_time_sent">${current_time}</span></div></div>`);
-      socket.emit('message_sent', {'content': message, 'room': group_current_index});
+      socket.emit('message_sent', {'content': message, 'room': group_current_index, 'sender': user_email});
       document.querySelector('.chat_box').scrollTo(0,document.querySelector('.chat_box').scrollHeight);
     })
     
@@ -393,16 +401,33 @@
     if (localStorage.getItem('login token')){
         socket.emit('localStorage', localStorage.getItem('login token'));
     }
-    socket.on('loggedin_process', function(data){
-      console.log(JSON.stringify(data, null, "  "));
+    socket.on('loggedin_process_room', function(data){
+
+      console.log(data);
       data.forEach(room => {
-        console.log(JSON.stringify(room['room_name'], null, "  "));
         document.querySelector(".group_collections").insertAdjacentHTML("beforeend", `<div class="group_list"><div><img src="group_logo.jpg" alt="" class="group_logo"><img src="https://img.icons8.com/material-outlined/24/000000/filled-circle--v2.png" class="online_status_2" style="width: 15px; height: 15px;"><span class="group_name">${room['room_name']}</span></div></div>`)
+        document.querySelector(".chat_box_container").insertAdjacentHTML("beforeend", `<div class="chat_box`+` chat_box_${room['_id']}"></div>`)
+        room['message_list'].forEach(message => {
+          console.log(message);
+          room_id_formater = ".chat_box_"+room['_id'];
+          if (message['sender']===user_email){
+            message_p_color = 'white';
+            colorpicker_current_color = 'blue';
+            document.querySelector(room_id_formater).insertAdjacentHTML('beforeend', `<div class="message m_sent"><div class="content" ` + `style="background: ${colorpicker_current_color};">` + `<p style="color: ${message_p_color};">` + `${message['content']}</p><span class="message_time_sent">${current_time}</span></div></div>`);
+          }else{
+            document.querySelector(room_id_formater).insertAdjacentHTML('beforeend', `<div class="message m_received"><div class="chat_user_img_wrapper"><img src="default_profile_image.jpg" alt="" class="chat_user_img"></div><div class="content"><p>`+message['content']+`</p><span class="message_time_received">${current_time}</span></div></div>`);
+          }
+          
+        })
         group_list.push(room['_id']);
         hover_show_items();
       })
     })
-    
+    var user_email = "";
+    socket.on('account_login_info', data => {
+      user_email = data['email'];
+      console.log(user_email);
+    })
   </script>
 </body>
 
