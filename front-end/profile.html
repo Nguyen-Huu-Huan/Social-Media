@@ -399,7 +399,8 @@
       socket.on('send_login_token', data => {
         localStorage.setItem('login token', data);
       })
-      socket.on('loggedin_process', function(){
+      socket.on('loggedin_process_room', function(){
+        console.log('hello world');
         document.querySelector('.message_a').style.display = "block";
         document.querySelector('.notification_a').style.display = "block";
         document.querySelector('.menu_a').style.display = "block";
