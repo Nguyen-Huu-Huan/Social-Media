@@ -38,33 +38,42 @@ app.use(express.static(path.join(__dirname, 'front-end')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-var roomArray = new Array();
 
+var roomArray = new Array();
 io.on('connection', socket => {
     socket.on('localStorage', async data => {
         verifyID = await jwt.verify(data, process.env.TOKEN_KEY)['user_id'];
         userModel.findOne({_id: mongoose.Types.ObjectId(verifyID)}, function(error, userData){
-            if (userData.length===0){
-                console.log('unable to find user id');
+            if (!userData){
+                console.log('error');
             }else{
-                var roomInfo = {};
-                userData['room_list'].forEach( async (roomID, index) => {
-                    chatRoomModel.findOne({_id: mongoose.Types.ObjectId(roomID)}, function(err, roomData){
-                        if (roomData.length===0){
-                            console.log('no room found');
-                        }else{
-                            roomInfo = roomData;
-                            roomArray.push(roomInfo);
-                        }
+                if (userData.length===0){
+                    console.log('unable to find user id');
+                }else{
+                    var roomInfo = {};
+                    socket.emit('account_login_info', userData);
+                    
+                    userData['room_list'].forEach( async (roomID, index) => {
+                        chatRoomModel.findOne({_id: mongoose.Types.ObjectId(roomID)}, function(err, roomData){
+                            if (!roomData){
+                                console.log('error');
+                            }else {
+                                if (roomData.length===0){
+                                    console.log('no room found');
+                                }else{
+                                    roomArray[index] = roomData;
+                                }
+                            }
+                        })
                     })
-                    console.log(roomArray);
-                })
-                console.log(roomArray);
-                socket.emit('loggedin_process', roomArray);
+                    socket.emit('loggedin_process_room', roomArray);
+                }
             }
         })
-    })
 
+
+    })
+    
     socket.on('create_new_room', data => {
         let new_room = new chatRoomModel({
             room_id: 15,
@@ -84,9 +93,26 @@ io.on('connection', socket => {
     })
     socket.on('message_sent', data => {
         let new_message = new messageModel({
-            content: data['content']
+            content: data['content'],
+            sender: data['sender']
         });
+
         new_message.save();
+        chatRoomModel.find({_id: mongoose.Types.ObjectId(data['room'])}, async function(error, userData){
+            if (userData.length===0){
+                console.log('Message cannot be sent');
+            }else{
+                console.log('Message sent');
+                chatRoomModel.updateOne({_id: mongoose.Types.ObjectId(data['room'])}, {$push: {message_list: new_message}}, function(err, success){
+                    if (err){
+                        console.log('update message list unsuccessful');
+                    }else{
+                        console.log('message list updated');
+                    }
+                })
+            }
+        })
+        
         console.log(data['room']);
         socket.broadcast.emit('user-chat', data);
     })
@@ -115,7 +141,6 @@ io.on('connection', socket => {
 
     })
     socket.on('login_auth', (login_info) => {
-        const account = userModel.findOne({ email: login_info['email'] });
         console.log(login_info['email']);
         userModel.find({email: login_info['email']}, async function(error, data){
             if (data.length===0){
