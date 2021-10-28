@@ -79,7 +79,7 @@
   <section class="body row">
     <div class="side_group_icon col-5">
       <div class="add_group">
-        <i class="fas fa-plus" id="add_group_button"></i>
+        <i class="fas fa-plus" id="add_group_button" onClick="Opengroupdialog()"></i>
         <div class="group_dialog">
           <div class="group_dialog_row1">
             <div class="show_image">
@@ -89,7 +89,7 @@
               <i class="bi bi-camera"></i>  
               <input type="file" accept="image/*" class="image_upload">          
             </button>
-            <button class="exit_creategroup"><i class="fas fa-sign-out-alt"></i></button>
+            <button class="exit_creategroup" onClick="Exitgroupdialog()"><i class="fas fa-sign-out-alt"></i></button>
           </div>
           <input type="text" class="input_group_name" placeholder="Enter your group name">
           <input type="text" class="input_group_description" placeholder="Enter short description for your group">
@@ -214,6 +214,22 @@
   <script src="/socket.io/socket.io.js"></script>
   <script>
     const socket = io();
+
+
+    //logic to make linear-gradient background
+    function active_change_color(elemt){
+      var change_box_color = document.getElementById("change_box_color");
+      var change_box_color1 = document.getElementById("change_box_color1");
+      change_box_color.addEventListener("input", function(){
+        elemt.style.background = `linear-gradient(to right, ${change_box_color.value},${change_box_color1.value})`;
+      })
+      change_box_color1.addEventListener("input", function(){
+        elemt.style.background = `linear-gradient(to right, ${change_box_color.value},${change_box_color1.value})`;
+      })
+    }
+
+
+    //hover logo function
     function hover_show_items(){
       var group_name_elms = document.querySelectorAll(".group_name");
       var group_logo_elms = document.querySelectorAll(".group_logo");
@@ -229,8 +245,7 @@
           group_name_elms[i].style.opacity = "0"
           side_group_icon.style = "flex-basis: 5%"
           group_details.style = "flex-basis: 30%"
-        })
-
+        })     
       })
       var chat_box_elms = document.querySelectorAll(".chat_box");
       var logo_background = document.querySelectorAll(".group_list");
@@ -249,6 +264,42 @@
         })
       })
     }
+    hover_show_items()
+
+    //create group function when click on "+" button
+    var add_group_box = document.querySelector(".group_dialog");
+    var error_notification = document.querySelector(".add_group_error");
+    var input_group_name = document.querySelector(".input_group_name");
+    var input_group_description = document.querySelector(".input_group_description");
+
+
+    //Open create group dialog 
+    function Opengroupdialog(){
+      var add_group_box = document.querySelector(".group_dialog");     
+      add_group_box.style.display = "block";
+    }
+
+    //Exit create group dialog
+    function Exitgroupdialog(){
+      var add_group_box = document.querySelector(".group_dialog");
+      var error_notification = document.querySelector(".add_group_error");
+      var input_group_name = document.querySelector(".input_group_name");
+      var input_group_description = document.querySelector(".input_group_description");
+      add_group_box.style.display = "none"
+      input_group_name.value = ""
+      input_group_description.value = ""
+      error_notification.textContent= ""
+    }
+
+
+    //Help to open file to upload image review part on message.js 
+    function Openimagefile(){
+      var image_upload = document.querySelector(".image_upload");
+      image_upload.click();
+    }
+
+
+    //create new group in html and transfer data to socket.io
     socket.on('create_new_room', data => {
       document.querySelector(".chat_box_container").insertAdjacentHTML("beforeend", `<div class="chat_box`+` chat_box_${data['_id']}"></div>`)
     })
@@ -258,25 +309,26 @@
     var error_notification = document.querySelector(".add_group_error");
     var add_group_box = document.querySelector(".group_dialog");
     commit_button.addEventListener("click", function(){
-    if ((input_group_name.value.length > 15) || (input_group_description.value > 15)){
-      error_notification.textContent = "Invalid! No more than 15 characters"
-      console.log("error")
-    }
-    else{
-      var image_commit = document.querySelector(".show_image *").getAttribute('src');
-      document.querySelector(".group_collections").insertAdjacentHTML("beforeend", `<div class="group_list"><div><img src="${image_commit}" alt="" class="group_logo"><img src="https://img.icons8.com/material-outlined/24/000000/filled-circle--v2.png" class="online_status_2" style="width: 15px; height: 15px;"><span class="group_name">${input_group_name.value}</span></div></div>`)
-      var new_group_index = document.querySelectorAll('.group_list').length;
-      
-      room_information = {'creator': localStorage.getItem('login token'),'name': input_group_name.value, 'description': input_group_description.value, 'member': ['s3912345', 's3500000']};
-      error_notification.textContent= ""
-      input_group_name.value = ""
-      input_group_description.value = ""
-      add_group_box.style.display = "none"
-      console.log(room_information);
-      socket.emit('create_new_room', room_information);
-      hover_show_items()
-    }
-  })
+      if ((input_group_name.value.length > 15) || (input_group_description.value > 15)){
+        error_notification.textContent = "Invalid! No more than 15 characters"
+      }
+      else{
+        var image_commit = document.querySelector(".show_image *").getAttribute('src');
+        document.querySelector(".group_collections").insertAdjacentHTML("beforeend", `<div class="group_list"><div><img src="${image_commit}" alt="" class="group_logo"><img src="https://img.icons8.com/material-outlined/24/000000/filled-circle--v2.png" class="online_status_2" style="width: 15px; height: 15px;"><span class="group_name">${input_group_name.value}</span></div></div>`)
+        var new_group_index = document.querySelectorAll('.group_list').length;    
+        room_information = {'creator': localStorage.getItem('login token'),'name': input_group_name.value, 'description': input_group_description.value, 'member': ['s3912345', 's3500000']};
+        error_notification.textContent= ""
+        input_group_name.value = ""
+        input_group_description.value = ""
+        add_group_box.style.display = "none"
+        console.log(room_information);
+        socket.emit('create_new_room', room_information);
+        hover_show_items()
+      }
+    })
+    
+    
+
     var current_time = new Date().toLocaleString((window.navigator.userLanguage || window.navigator.language), {
             hour: 'numeric',
             minute: 'numeric',
