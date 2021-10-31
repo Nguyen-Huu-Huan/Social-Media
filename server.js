@@ -10,11 +10,11 @@ const nodemailer = require('nodemailer');
 const mongoose = require('mongoose');
 
 // List of Collections
-const chatRoomModel = require("./models/chatRoomSchema");
-const courseDataModel = require("./models/courseDataSchema");
-const messageModel = require("./models/messageSchema");
-const postModel = require("./models/postSchema");
-const userModel = require("./models/userSchema");
+const chatRoomModel = require("./Models/chatRoomSchema");
+const courseDataModel = require("./Models/courseDataSchema");
+const messageModel = require("./Models/messageSchema");
+const postModel = require("./Models/postSchema");
+const userModel = require("./Models/userSchema");
 
 
 var transport = nodemailer.createTransport({
