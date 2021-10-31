@@ -744,7 +744,12 @@ input[id=change_background_color]::-webkit-color-swatch-wrapper {
   justify-content: flex-start;
   padding: 0;
 }
-.group_dialog{
+.dialog_container{
+  position: absolute;
+  /* width: 100%;
+  height: 100%; */
+}
+.group_dialog, .group_dialog1{
   position: fixed;
   margin:auto;
   top:0;
@@ -814,21 +819,21 @@ input[id=change_background_color]::-webkit-color-swatch-wrapper {
 .group_dialog>input:not(:last-child){
   margin: 30px 0 0 0;
 }
-.commit_button{
+.commit_button, .next_page{
   margin-top: 40px;
   position: relative;
   width: 100%;
   display: flex;
   justify-content: flex-end;
 }
-.commit_button span{
+.commit_button span, .next_page span{
   position: absolute;
   right: 30%;
   font-size: 25px;
   width: 500px;
   text-align: center;
 }
-.commit_button button{
+.commit_button button, .next_page button{
   padding: 10px;
   border-radius: 15px 15px 15px 15px;
   color: white;
@@ -840,4 +845,53 @@ input[id=change_background_color]::-webkit-color-swatch-wrapper {
 }
 .camera_button input{
   display: none;
+}
+.group_dialog1{
+  display: block;
+}
+.group_dialog1_row2{
+  overflow-x: visible;
+}
+.group_dialog1_row2 >input{
+  width: 85%;
+  height: 30px;
+  font-size: 20px;
+  margin-bottom: 40px;
+}
+.group_dialog1_row2 >button{
+  height: 35px;
+  font-size: 20px;
+  margin-left: 5px;
+  border-radius: 15px;
+  background: #0e9aa7;
+  color: white;
+  border-color: none;
+}
+.group_dialog1_row1{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.teammates_logo{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.teammates_logo >img{
+  border-radius: 50%;
+  width: 160px;
+  height: 160px;
+}
+.previous_creategroup{
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: white;
+  background: #ff6666;
+  right: 95%;
+}
+.invite_title{
+  color: #9d03fc;
+  font-weight: bold;
 }
