@@ -80,23 +80,43 @@
     <div class="side_group_icon col-5">
       <div class="add_group">
         <i class="fas fa-plus" id="add_group_button" onClick="Opengroupdialog()"></i>
-        <div class="group_dialog">
-          <div class="group_dialog_row1">
-            <div class="show_image">
-              <img src="group_logo.jpg" alt="" style="width: 160px; height:160px; object-fit: cover;">
+        <div class="dialog_container">
+          <div class="group_dialog">
+            <div class="group_dialog_row1">
+              <div class="show_image">
+                <img src="group_logo.jpg" alt="" style="width: 160px; height:160px; object-fit: cover;">
+              </div>
+              <button class="camera_button" onclick='Openimagefile()'>
+                <i class="bi bi-camera"></i>  
+                <input type="file" accept="image/*" class="image_upload">          
+              </button>
+              <button class="exit_creategroup" onClick="Exitgroupdialog()"><i class="fas fa-sign-out-alt"></i></button>
             </div>
-            <button class="camera_button" onclick='Openimagefile()'>
-              <i class="bi bi-camera"></i>  
-              <input type="file" accept="image/*" class="image_upload">          
-            </button>
-            <button class="exit_creategroup" onClick="Exitgroupdialog()"><i class="fas fa-sign-out-alt"></i></button>
+            <input type="text" class="input_group_name" placeholder="Enter your group name">
+            <input type="text" class="input_group_description" placeholder="Enter short description for your group">
+            <div class="next_page">
+              <span class="add_group_error"></span>
+              <button class="next_button">Next Page</button>
+            </div>  
           </div>
-          <input type="text" class="input_group_name" placeholder="Enter your group name">
-          <input type="text" class="input_group_description" placeholder="Enter short description for your group">
-          <div class="commit_button">
-            <span class="add_group_error"></span>
-            <button class="create_group">Create a new group</button>
-          </div>  
+          <div class="group_dialog1">
+            <div class="group_dialog1_row1">
+              <button class="previous_creategroup"> <i class="fas fa-hand-point-left"></i></button>
+              <span class="invite_title">Invite your teammates</span>
+              <button class="exit_creategroup" onClick="Exitgroupdialog()"><i class="fas fa-sign-out-alt"></i></button>
+            </div>
+            <div class="teammates_logo">
+              <img src="teammates_logo.jpg" alt="">
+            </div>
+            <div class="group_dialog1_row2">
+              <input type="text" class="input_invite_teammates" placeholder="Search for your teammates by Sid">
+              <button>Invite</button>
+            </div>
+            <div class="commit_button">
+              <span class="add_group_error"></span>
+              <button class="create_group">Create a new group</button>
+            </div>  
+          </div>
         </div>
       </div>
       <div class="group_collections">
@@ -283,10 +303,12 @@
     //Exit create group dialog
     function Exitgroupdialog(){
       var add_group_box = document.querySelector(".group_dialog");
+      var add_group_box1 = document.querySelector(".group_dialog1");
       var error_notification = document.querySelector(".add_group_error");
       var input_group_name = document.querySelector(".input_group_name");
       var input_group_description = document.querySelector(".input_group_description");
       add_group_box.style.display = "none"
+      add_group_box1.style.display = "none"
       input_group_name.value = ""
       input_group_description.value = ""
       error_notification.textContent= ""
@@ -310,6 +332,22 @@
     var input_group_description = document.querySelector(".input_group_description");
     var error_notification = document.querySelector(".add_group_error");
     var add_group_box = document.querySelector(".group_dialog");
+    var next_button = document.querySelector(".next_page>button");
+    var add_group_box1 = document.querySelector(".group_dialog1");
+    var previous_button = document.querySelector(".previous_creategroup");
+    previous_button.addEventListener("click", function(){
+      add_group_box.style.display = "block"
+      add_group_box1.style.display ="none"
+    })
+    next_button.addEventListener("click", function(){
+      if ((input_group_name.value.length > 15) || (input_group_description.value > 15)){
+        error_notification.textContent = "Invalid! No more than 15 characters"
+      }
+      else{
+        add_group_box.style.display = "none"
+        add_group_box1.style.display ="block"
+      }
+    })
     commit_button.addEventListener("click", function(){
       if ((input_group_name.value.length > 15) || (input_group_description.value > 15)){
         error_notification.textContent = "Invalid! No more than 15 characters"
@@ -323,6 +361,7 @@
         input_group_name.value = ""
         input_group_description.value = ""
         add_group_box.style.display = "none"
+        add_group_box1.style.display ="none"
         console.log(room_information);
         socket.emit('create_new_room', room_information);
         hover_show_items()
