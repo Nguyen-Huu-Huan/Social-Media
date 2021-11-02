@@ -846,9 +846,6 @@ input[id=change_background_color]::-webkit-color-swatch-wrapper {
 .camera_button input{
   display: none;
 }
-.group_dialog1{
-  display: block;
-}
 .group_dialog1_row2{
   overflow-x: visible;
 }
